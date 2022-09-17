@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GESCHANGE
+namespace GESCHANGE.Forms.Sub
 {
-    public partial class Form1 : Form
+    public partial class frmListVehicules : Form
     {
-        public Form1()
+        public frmListVehicules()
         {
             InitializeComponent();
         }

@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GESSRMAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Entrees">
+          <Key>
+            <PropertyRef Name="entr_ID" />
+          </Key>
+          <Property Name="entr_ID" Type="int" Nullable="false" />
+          <Property Name="entr_Fournisseur" Type="nvarchar(max)" />
+          <Property Name="entr_Date" Type="date" />
+          <Property Name="entr_Refference" Type="nvarchar(max)" />
+          <Property Name="entr_Quantite" Type="int" />
+          <Property Name="entr_Note" Type="nvarchar(max)" />
+          <Property Name="pies_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Grades">
+          <Key>
+            <PropertyRef Name="grd_ID" />
+          </Key>
+          <Property Name="grd_ID" Type="int" Nullable="false" />
+          <Property Name="grd_Libelle" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Pieces">
+          <Key>
+            <PropertyRef Name="pies_ID" />
+          </Key>
+          <Property Name="pies_ID" Type="int" Nullable="false" />
+          <Property Name="pies_Nom" Type="nvarchar(max)" />
+          <Property Name="pies_Refference" Type="nvarchar(max)" />
+          <Property Name="pies_Quantite" Type="int" />
+          <Property Name="pies_Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sorties">
+          <Key>
+            <PropertyRef Name="srt_ID" />
+          </Key>
+          <Property Name="srt_ID" Type="int" Nullable="false" />
+          <Property Name="srt_Date" Type="date" />
+          <Property Name="srt_Refference" Type="nvarchar(max)" />
+          <Property Name="srt_Quantite" Type="int" />
+          <Property Name="srt_Note" Type="nvarchar(max)" />
+          <Property Name="vl_ID" Type="int" />
+          <Property Name="pies_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="int" Nullable="false" />
+          <Property Name="user_Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="user_Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicules">
+          <Key>
+            <PropertyRef Name="vl_ID" />
+          </Key>
+          <Property Name="vl_ID" Type="int" Nullable="false" />
+          <Property Name="vl_Matricule" Type="nvarchar(max)" />
+          <Property Name="vl_Genre" Type="nvarchar(max)" />
+          <Property Name="vl_Marque" Type="nvarchar(max)" />
+          <Property Name="cond_Nom" Type="nvarchar(max)" />
+          <Property Name="cond_Prenom" Type="nvarchar(max)" />
+          <Property Name="grd_ID" Type="int" />
+          <Property Name="cond_Mle" Type="nvarchar(max)" />
+          <Property Name="cond_Unite" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Entrees_Pieces">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="0..1" />
+          <End Role="Entrees" Type="Self.Entrees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="pies_ID" />
+            </Principal>
+            <Dependent Role="Entrees">
+              <PropertyRef Name="pies_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sorties_Pieces">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="0..1" />
+          <End Role="Sorties" Type="Self.Sorties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="pies_ID" />
+            </Principal>
+            <Dependent Role="Sorties">
+              <PropertyRef Name="pies_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sorties_Vehicules">
+          <End Role="Vehicules" Type="Self.Vehicules" Multiplicity="0..1" />
+          <End Role="Sorties" Type="Self.Sorties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicules">
+              <PropertyRef Name="vl_ID" />
+            </Principal>
+            <Dependent Role="Sorties">
+              <PropertyRef Name="vl_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicule_Grade">
+          <End Role="Grades" Type="Self.Grades" Multiplicity="0..1" />
+          <End Role="Vehicules" Type="Self.Vehicules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grades">
+              <PropertyRef Name="grd_ID" />
+            </Principal>
+            <Dependent Role="Vehicules">
+              <PropertyRef Name="grd_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Delete_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="entr_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Grades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="grd_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="srt_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vl_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="entr_ID" Type="int" Mode="In" />
+          <Parameter Name="entr_Fournisseur" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="entr_Date" Type="date" Mode="In" />
+          <Parameter Name="entr_Refference" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="entr_Quantite" Type="int" Mode="In" />
+          <Parameter Name="entr_Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Grades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="grd_ID" Type="int" Mode="In" />
+          <Parameter Name="grd_Libelle" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Insert_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+          <Parameter Name="pies_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="pies_Refference" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pies_Quantite" Type="int" Mode="In" />
+          <Parameter Name="pies_Note" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Insert_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="srt_ID" Type="int" Mode="In" />
+          <Parameter Name="srt_Date" Type="date" Mode="In" />
+          <Parameter Name="srt_Refference" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="srt_Quantite" Type="int" Mode="In" />
+          <Parameter Name="srt_Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="vl_ID" Type="int" Mode="In" />
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Insert_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vl_ID" Type="int" Mode="In" />
+          <Parameter Name="vl_Matricule" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="vl_Genre" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="vl_Marque" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cond_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cond_Prenom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="grd_ID" Type="int" Mode="In" />
+          <Parameter Name="cond_Mle" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cond_Unite" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="MaxID_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Search_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Select_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Grades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Pieces_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_Operation_Entree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_Operation_Pieces_Entree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_Operation_Pieces_Sortie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_Operation_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_Operation_VL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_VL_Conducteur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_VL_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Update_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="entr_ID" Type="int" Mode="In" />
+          <Parameter Name="entr_Fournisseur" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="entr_Date" Type="date" Mode="In" />
+          <Parameter Name="entr_Refference" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="entr_Quantite" Type="int" Mode="In" />
+          <Parameter Name="entr_Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Update_Grades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="grd_ID" Type="int" Mode="In" />
+          <Parameter Name="grd_Libelle" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Update_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+          <Parameter Name="pies_Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="pies_Refference" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pies_Quantite" Type="int" Mode="In" />
+          <Parameter Name="pies_Note" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Update_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="srt_ID" Type="int" Mode="In" />
+          <Parameter Name="srt_Date" Type="date" Mode="In" />
+          <Parameter Name="srt_Refference" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="srt_Quantite" Type="int" Mode="In" />
+          <Parameter Name="srt_Note" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="vl_ID" Type="int" Mode="In" />
+          <Parameter Name="pies_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Update_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vl_ID" Type="int" Mode="In" />
+          <Parameter Name="vl_Matricule" Type="nvarchar" Mode="In" />
+          <Parameter Name="vl_Genre" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="vl_Marque" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="GESSRMAModelStoreContainer">
+          <EntitySet Name="Entrees" EntityType="Self.Entrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grades" EntityType="Self.Grades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pieces" EntityType="Self.Pieces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sorties" EntityType="Self.Sorties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicules" EntityType="Self.Vehicules" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Entrees_Pieces" Association="Self.FK_Entrees_Pieces">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Entrees" EntitySet="Entrees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sorties_Pieces" Association="Self.FK_Sorties_Pieces">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Sorties" EntitySet="Sorties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sorties_Vehicules" Association="Self.FK_Sorties_Vehicules">
+            <End Role="Vehicules" EntitySet="Vehicules" />
+            <End Role="Sorties" EntitySet="Sorties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicule_Grade" Association="Self.FK_Vehicule_Grade">
+            <End Role="Grades" EntitySet="Grades" />
+            <End Role="Vehicules" EntitySet="Vehicules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GESSRMAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Entrees">
+          <Key>
+            <PropertyRef Name="entr_ID" />
+          </Key>
+          <Property Name="entr_ID" Type="Int32" Nullable="false" />
+          <Property Name="entr_Fournisseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="entr_Date" Type="DateTime" Precision="0" />
+          <Property Name="entr_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="entr_Quantite" Type="Int32" />
+          <Property Name="entr_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pies_ID" Type="Int32" />
+          <NavigationProperty Name="Pieces" Relationship="Self.FK_Entrees_Pieces" FromRole="Entrees" ToRole="Pieces" />
+        </EntityType>
+        <EntityType Name="Grades">
+          <Key>
+            <PropertyRef Name="grd_ID" />
+          </Key>
+          <Property Name="grd_ID" Type="Int32" Nullable="false" />
+          <Property Name="grd_Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vehicules" Relationship="Self.FK_Vehicule_Grade" FromRole="Grades" ToRole="Vehicules" />
+        </EntityType>
+        <EntityType Name="Pieces">
+          <Key>
+            <PropertyRef Name="pies_ID" />
+          </Key>
+          <Property Name="pies_ID" Type="Int32" Nullable="false" />
+          <Property Name="pies_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pies_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pies_Quantite" Type="Int32" />
+          <Property Name="pies_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Entrees" Relationship="Self.FK_Entrees_Pieces" FromRole="Pieces" ToRole="Entrees" />
+          <NavigationProperty Name="Sorties" Relationship="Self.FK_Sorties_Pieces" FromRole="Pieces" ToRole="Sorties" />
+        </EntityType>
+        <EntityType Name="Sorties">
+          <Key>
+            <PropertyRef Name="srt_ID" />
+          </Key>
+          <Property Name="srt_ID" Type="Int32" Nullable="false" />
+          <Property Name="srt_Date" Type="DateTime" Precision="0" />
+          <Property Name="srt_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="srt_Quantite" Type="Int32" />
+          <Property Name="srt_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_ID" Type="Int32" />
+          <Property Name="pies_ID" Type="Int32" />
+          <NavigationProperty Name="Pieces" Relationship="Self.FK_Sorties_Pieces" FromRole="Sorties" ToRole="Pieces" />
+          <NavigationProperty Name="Vehicules" Relationship="Self.FK_Sorties_Vehicules" FromRole="Sorties" ToRole="Vehicules" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="Int32" Nullable="false" />
+          <Property Name="user_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicules">
+          <Key>
+            <PropertyRef Name="vl_ID" />
+          </Key>
+          <Property Name="vl_ID" Type="Int32" Nullable="false" />
+          <Property Name="vl_Matricule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_Genre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_Marque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="grd_ID" Type="Int32" />
+          <Property Name="cond_Mle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Unite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Grades" Relationship="Self.FK_Vehicule_Grade" FromRole="Vehicules" ToRole="Grades" />
+          <NavigationProperty Name="Sorties" Relationship="Self.FK_Sorties_Vehicules" FromRole="Vehicules" ToRole="Sorties" />
+        </EntityType>
+        <Association Name="FK_Entrees_Pieces">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="0..1" />
+          <End Role="Entrees" Type="Self.Entrees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="pies_ID" />
+            </Principal>
+            <Dependent Role="Entrees">
+              <PropertyRef Name="pies_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehicule_Grade">
+          <End Role="Grades" Type="Self.Grades" Multiplicity="0..1" />
+          <End Role="Vehicules" Type="Self.Vehicules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grades">
+              <PropertyRef Name="grd_ID" />
+            </Principal>
+            <Dependent Role="Vehicules">
+              <PropertyRef Name="grd_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sorties_Pieces">
+          <End Role="Pieces" Type="Self.Pieces" Multiplicity="0..1" />
+          <End Role="Sorties" Type="Self.Sorties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pieces">
+              <PropertyRef Name="pies_ID" />
+            </Principal>
+            <Dependent Role="Sorties">
+              <PropertyRef Name="pies_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sorties_Vehicules">
+          <End Role="Vehicules" Type="Self.Vehicules" Multiplicity="0..1" />
+          <End Role="Sorties" Type="Self.Sorties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicules">
+              <PropertyRef Name="vl_ID" />
+            </Principal>
+            <Dependent Role="Sorties">
+              <PropertyRef Name="vl_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GESSRMAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Entrees" EntityType="Self.Entrees" />
+          <EntitySet Name="Grades" EntityType="Self.Grades" />
+          <EntitySet Name="Pieces" EntityType="Self.Pieces" />
+          <EntitySet Name="Sorties" EntityType="Self.Sorties" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Vehicules" EntityType="Self.Vehicules" />
+          <AssociationSet Name="FK_Entrees_Pieces" Association="Self.FK_Entrees_Pieces">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Entrees" EntitySet="Entrees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehicule_Grade" Association="Self.FK_Vehicule_Grade">
+            <End Role="Grades" EntitySet="Grades" />
+            <End Role="Vehicules" EntitySet="Vehicules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sorties_Pieces" Association="Self.FK_Sorties_Pieces">
+            <End Role="Pieces" EntitySet="Pieces" />
+            <End Role="Sorties" EntitySet="Sorties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sorties_Vehicules" Association="Self.FK_Sorties_Vehicules">
+            <End Role="Vehicules" EntitySet="Vehicules" />
+            <End Role="Sorties" EntitySet="Sorties" />
+          </AssociationSet>
+          <FunctionImport Name="Select_Pieces" ReturnType="Collection(GESSRMAModel.Select_Pieces_Result)" />
+          <FunctionImport Name="Insert_Pieces">
+            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+            <Parameter Name="pies_Nom" Mode="In" Type="String" />
+            <Parameter Name="pies_Refference" Mode="In" Type="String" />
+            <Parameter Name="pies_Quantite" Mode="In" Type="Int32" />
+            <Parameter Name="pies_Note" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MaxID_Pieces" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Select_Pieces_By_ID" EntitySet="Pieces" ReturnType="Collection(GESSRMAModel.Pieces)">
+            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Pieces">
+            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+            <Parameter Name="pies_Nom" Mode="In" Type="String" />
+            <Parameter Name="pies_Refference" Mode="In" Type="String" />
+            <Parameter Name="pies_Quantite" Mode="In" Type="Int32" />
+            <Parameter Name="pies_Note" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Pieces">
+            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Select_Pieces_Result">
+          <Property Type="Int32" Name="pies_ID" Nullable="false" />
+          <Property Type="String" Name="pies_Nom" Nullable="true" />
+          <Property Type="String" Name="pies_Refference" Nullable="true" />
+          <Property Type="Int32" Name="pies_Quantite" Nullable="true" />
+          <Property Type="String" Name="pies_Note" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GESSRMAModelStoreContainer" CdmEntityContainer="GESSRMAEntities">
+          <EntitySetMapping Name="Entrees">
+            <EntityTypeMapping TypeName="GESSRMAModel.Entrees">
+              <MappingFragment StoreEntitySet="Entrees">
+                <ScalarProperty Name="entr_ID" ColumnName="entr_ID" />
+                <ScalarProperty Name="entr_Fournisseur" ColumnName="entr_Fournisseur" />
+                <ScalarProperty Name="entr_Date" ColumnName="entr_Date" />
+                <ScalarProperty Name="entr_Refference" ColumnName="entr_Refference" />
+                <ScalarProperty Name="entr_Quantite" ColumnName="entr_Quantite" />
+                <ScalarProperty Name="entr_Note" ColumnName="entr_Note" />
+                <ScalarProperty Name="pies_ID" ColumnName="pies_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="GESSRMAModel.Entrees">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="GESSRMAModel.Store.Insert_Entrees">
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" />
+                  <ScalarProperty Name="entr_Note" ParameterName="entr_Note" />
+                  <ScalarProperty Name="entr_Quantite" ParameterName="entr_Quantite" />
+                  <ScalarProperty Name="entr_Refference" ParameterName="entr_Refference" />
+                  <ScalarProperty Name="entr_Date" ParameterName="entr_Date" />
+                  <ScalarProperty Name="entr_Fournisseur" ParameterName="entr_Fournisseur" />
+                  <ScalarProperty Name="entr_ID" ParameterName="entr_ID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="GESSRMAModel.Store.Update_Entrees">
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" Version="Current" />
+                  <ScalarProperty Name="entr_Note" ParameterName="entr_Note" Version="Current" />
+                  <ScalarProperty Name="entr_Quantite" ParameterName="entr_Quantite" Version="Current" />
+                  <ScalarProperty Name="entr_Refference" ParameterName="entr_Refference" Version="Current" />
+                  <ScalarProperty Name="entr_Date" ParameterName="entr_Date" Version="Current" />
+                  <ScalarProperty Name="entr_Fournisseur" ParameterName="entr_Fournisseur" Version="Current" />
+                  <ScalarProperty Name="entr_ID" ParameterName="entr_ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Entrees">
+                  <ScalarProperty Name="entr_ID" ParameterName="entr_ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="GESSRMAModel.Grades">
+              <MappingFragment StoreEntitySet="Grades">
+                <ScalarProperty Name="grd_ID" ColumnName="grd_ID" />
+                <ScalarProperty Name="grd_Libelle" ColumnName="grd_Libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="GESSRMAModel.Grades">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="GESSRMAModel.Store.Insert_Grades">
+                  <ScalarProperty Name="grd_Libelle" ParameterName="grd_Libelle" />
+                  <ScalarProperty Name="grd_ID" ParameterName="grd_ID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="GESSRMAModel.Store.Update_Grades">
+                  <ScalarProperty Name="grd_Libelle" ParameterName="grd_Libelle" Version="Current" />
+                  <ScalarProperty Name="grd_ID" ParameterName="grd_ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Grades">
+                  <ScalarProperty Name="grd_ID" ParameterName="grd_ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pieces">
+            <EntityTypeMapping TypeName="GESSRMAModel.Pieces">
+              <MappingFragment StoreEntitySet="Pieces">
+                <ScalarProperty Name="pies_ID" ColumnName="pies_ID" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="pies_Refference" ColumnName="pies_Refference" />
+                <ScalarProperty Name="pies_Quantite" ColumnName="pies_Quantite" />
+                <ScalarProperty Name="pies_Note" ColumnName="pies_Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="GESSRMAModel.Pieces">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="GESSRMAModel.Store.Insert_Pieces">
+                  <ScalarProperty Name="pies_Note" ParameterName="pies_Note" />
+                  <ScalarProperty Name="pies_Quantite" ParameterName="pies_Quantite" />
+                  <ScalarProperty Name="pies_Refference" ParameterName="pies_Refference" />
+                  <ScalarProperty Name="pies_Nom" ParameterName="pies_Nom" />
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="GESSRMAModel.Store.Update_Pieces">
+                  <ScalarProperty Name="pies_Note" ParameterName="pies_Note" Version="Current" />
+                  <ScalarProperty Name="pies_Quantite" ParameterName="pies_Quantite" Version="Current" />
+                  <ScalarProperty Name="pies_Refference" ParameterName="pies_Refference" Version="Current" />
+                  <ScalarProperty Name="pies_Nom" ParameterName="pies_Nom" Version="Current" />
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Pieces">
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sorties">
+            <EntityTypeMapping TypeName="GESSRMAModel.Sorties">
+              <MappingFragment StoreEntitySet="Sorties">
+                <ScalarProperty Name="srt_ID" ColumnName="srt_ID" />
+                <ScalarProperty Name="srt_Date" ColumnName="srt_Date" />
+                <ScalarProperty Name="srt_Refference" ColumnName="srt_Refference" />
+                <ScalarProperty Name="srt_Quantite" ColumnName="srt_Quantite" />
+                <ScalarProperty Name="srt_Note" ColumnName="srt_Note" />
+                <ScalarProperty Name="vl_ID" ColumnName="vl_ID" />
+                <ScalarProperty Name="pies_ID" ColumnName="pies_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="GESSRMAModel.Sorties">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="GESSRMAModel.Store.Insert_Sorties">
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" />
+                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" />
+                  <ScalarProperty Name="srt_Note" ParameterName="srt_Note" />
+                  <ScalarProperty Name="srt_Quantite" ParameterName="srt_Quantite" />
+                  <ScalarProperty Name="srt_Refference" ParameterName="srt_Refference" />
+                  <ScalarProperty Name="srt_Date" ParameterName="srt_Date" />
+                  <ScalarProperty Name="srt_ID" ParameterName="srt_ID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="GESSRMAModel.Store.Update_Sorties">
+                  <ScalarProperty Name="pies_ID" ParameterName="pies_ID" Version="Current" />
+                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" Version="Current" />
+                  <ScalarProperty Name="srt_Note" ParameterName="srt_Note" Version="Current" />
+                  <ScalarProperty Name="srt_Quantite" ParameterName="srt_Quantite" Version="Current" />
+                  <ScalarProperty Name="srt_Refference" ParameterName="srt_Refference" Version="Current" />
+                  <ScalarProperty Name="srt_Date" ParameterName="srt_Date" Version="Current" />
+                  <ScalarProperty Name="srt_ID" ParameterName="srt_ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Sorties">
+                  <ScalarProperty Name="srt_ID" ParameterName="srt_ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GESSRMAModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="user_Name" ColumnName="user_Name" />
+                <ScalarProperty Name="user_Password" ColumnName="user_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicules">
+            <EntityTypeMapping TypeName="GESSRMAModel.Vehicules">
+              <MappingFragment StoreEntitySet="Vehicules">
+                <ScalarProperty Name="vl_ID" ColumnName="vl_ID" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="cond_Nom" ColumnName="cond_Nom" />
+                <ScalarProperty Name="cond_Prenom" ColumnName="cond_Prenom" />
+                <ScalarProperty Name="grd_ID" ColumnName="grd_ID" />
+                <ScalarProperty Name="cond_Mle" ColumnName="cond_Mle" />
+                <ScalarProperty Name="cond_Unite" ColumnName="cond_Unite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="GESSRMAModel.Vehicules">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="GESSRMAModel.Store.Insert_Vehicules">
+                  <ScalarProperty Name="cond_Unite" ParameterName="cond_Unite" />
+                  <ScalarProperty Name="cond_Mle" ParameterName="cond_Mle" />
+                  <ScalarProperty Name="grd_ID" ParameterName="grd_ID" />
+                  <ScalarProperty Name="cond_Prenom" ParameterName="cond_Prenom" />
+                  <ScalarProperty Name="cond_Nom" ParameterName="cond_Nom" />
+                  <ScalarProperty Name="vl_Marque" ParameterName="vl_Marque" />
+                  <ScalarProperty Name="vl_Genre" ParameterName="vl_Genre" />
+                  <ScalarProperty Name="vl_Matricule" ParameterName="vl_Matricule" />
+                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="GESSRMAModel.Store.Update_Vehicules">
+                  <ScalarProperty Name="vl_Marque" ParameterName="vl_Marque" Version="Current" />
+                  <ScalarProperty Name="vl_Genre" ParameterName="vl_Genre" Version="Current" />
+                  <ScalarProperty Name="vl_Matricule" ParameterName="vl_Matricule" Version="Current" />
+                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Vehicules">
+                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Select_Pieces" FunctionName="GESSRMAModel.Store.Select_Pieces">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Select_Pieces_Result">
+                <ScalarProperty Name="pies_ID" ColumnName="pies_ID" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="pies_Refference" ColumnName="pies_Refference" />
+                <ScalarProperty Name="pies_Quantite" ColumnName="pies_Quantite" />
+                <ScalarProperty Name="pies_Note" ColumnName="pies_Note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Insert_Pieces" FunctionName="GESSRMAModel.Store.Insert_Pieces" />
+          <FunctionImportMapping FunctionImportName="MaxID_Pieces" FunctionName="GESSRMAModel.Store.MaxID_Pieces" />
+          <FunctionImportMapping FunctionImportName="Select_Pieces_By_ID" FunctionName="GESSRMAModel.Store.Select_Pieces_By_ID" />
+          <FunctionImportMapping FunctionImportName="Update_Pieces" FunctionName="GESSRMAModel.Store.Update_Pieces" />
+          <FunctionImportMapping FunctionImportName="Delete_Pieces" FunctionName="GESSRMAModel.Store.Delete_Pieces" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
