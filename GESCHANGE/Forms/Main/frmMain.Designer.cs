@@ -83,6 +83,7 @@
             this.menuEntree.Name = "menuEntree";
             this.menuEntree.Size = new System.Drawing.Size(181, 26);
             this.menuEntree.Text = "&Entrées";
+            this.menuEntree.Click += new System.EventHandler(this.menuEntree_Click);
             // 
             // menuSorties
             // 

@@ -121,11 +121,6 @@ namespace GESCHANGE.Forms.Sub
 
         #endregion Codes
 
-        public frmPieces()
-        {
-            InitializeComponent();
-        }
-
         public frmPieces(frmListPieces f)
         {
             InitializeComponent();
@@ -201,7 +196,6 @@ namespace GESCHANGE.Forms.Sub
 
         private void frmPieces_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

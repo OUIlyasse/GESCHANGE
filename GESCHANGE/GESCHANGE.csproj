@@ -80,6 +80,9 @@
     <Compile Include="Db\Pieces.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Db\Select_Entrees_By_ID_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Db\Select_Grades_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
@@ -87,6 +90,9 @@
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Select_Vehicules_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Select_View_EP_Entrees_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Select_View_VL_Grade_Result.cs">
@@ -106,6 +112,18 @@
     </Compile>
     <Compile Include="Forms\Main\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Sub\frmENew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub\frmENew.Designer.cs">
+      <DependentUpon>frmENew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Sub\frmListEntrees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub\frmListEntrees.Designer.cs">
+      <DependentUpon>frmListEntrees.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Sub\frmListPieces.cs">
       <SubType>Form</SubType>
@@ -137,6 +155,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Main\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmENew.resx">
+      <DependentUpon>frmENew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmListEntrees.resx">
+      <DependentUpon>frmListEntrees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sub\frmListPieces.resx">
       <DependentUpon>frmListPieces.cs</DependentUpon>

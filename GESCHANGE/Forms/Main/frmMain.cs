@@ -43,5 +43,11 @@ namespace GESCHANGE.Forms.Main
             frmListVehicules fLV = new frmListVehicules();
             OpenForm(fLV);
         }
+
+        private void menuEntree_Click(object sender, EventArgs e)
+        {
+            frmListEntrees fLE = new frmListEntrees();
+            OpenForm(fLE);
+        }
     }
 }
