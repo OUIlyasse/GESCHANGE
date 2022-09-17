@@ -120,5 +120,174 @@ namespace GESCHANGE.Db
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Pieces", pies_IDParameter);
         }
+    
+        public virtual int Delete_Vehicules(Nullable<int> vl_ID)
+        {
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Vehicules", vl_IDParameter);
+        }
+    
+        public virtual int Insert_Vehicules(Nullable<int> vl_ID, string vl_Matricule, string vl_Genre, string vl_Marque, string cond_Nom, string cond_Prenom, Nullable<int> grd_ID, string cond_Mle, string cond_Unite)
+        {
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            var vl_MatriculeParameter = vl_Matricule != null ?
+                new ObjectParameter("vl_Matricule", vl_Matricule) :
+                new ObjectParameter("vl_Matricule", typeof(string));
+    
+            var vl_GenreParameter = vl_Genre != null ?
+                new ObjectParameter("vl_Genre", vl_Genre) :
+                new ObjectParameter("vl_Genre", typeof(string));
+    
+            var vl_MarqueParameter = vl_Marque != null ?
+                new ObjectParameter("vl_Marque", vl_Marque) :
+                new ObjectParameter("vl_Marque", typeof(string));
+    
+            var cond_NomParameter = cond_Nom != null ?
+                new ObjectParameter("cond_Nom", cond_Nom) :
+                new ObjectParameter("cond_Nom", typeof(string));
+    
+            var cond_PrenomParameter = cond_Prenom != null ?
+                new ObjectParameter("cond_Prenom", cond_Prenom) :
+                new ObjectParameter("cond_Prenom", typeof(string));
+    
+            var grd_IDParameter = grd_ID.HasValue ?
+                new ObjectParameter("grd_ID", grd_ID) :
+                new ObjectParameter("grd_ID", typeof(int));
+    
+            var cond_MleParameter = cond_Mle != null ?
+                new ObjectParameter("cond_Mle", cond_Mle) :
+                new ObjectParameter("cond_Mle", typeof(string));
+    
+            var cond_UniteParameter = cond_Unite != null ?
+                new ObjectParameter("cond_Unite", cond_Unite) :
+                new ObjectParameter("cond_Unite", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Vehicules", vl_IDParameter, vl_MatriculeParameter, vl_GenreParameter, vl_MarqueParameter, cond_NomParameter, cond_PrenomParameter, grd_IDParameter, cond_MleParameter, cond_UniteParameter);
+        }
+    
+        public virtual ObjectResult<Vehicules> Select_Vehicules_By_ID(Nullable<int> vl_ID)
+        {
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Vehicules>("Select_Vehicules_By_ID", vl_IDParameter);
+        }
+    
+        public virtual ObjectResult<Vehicules> Select_Vehicules_By_ID(Nullable<int> vl_ID, MergeOption mergeOption)
+        {
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Vehicules>("Select_Vehicules_By_ID", mergeOption, vl_IDParameter);
+        }
+    
+        public virtual int Update_Vehicules(Nullable<int> vl_ID, string vl_Matricule, string vl_Genre, string vl_Marque, string cond_Nom, string cond_Prenom, Nullable<int> grd_ID, string cond_Mle, string cond_Unite)
+        {
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            var vl_MatriculeParameter = vl_Matricule != null ?
+                new ObjectParameter("vl_Matricule", vl_Matricule) :
+                new ObjectParameter("vl_Matricule", typeof(string));
+    
+            var vl_GenreParameter = vl_Genre != null ?
+                new ObjectParameter("vl_Genre", vl_Genre) :
+                new ObjectParameter("vl_Genre", typeof(string));
+    
+            var vl_MarqueParameter = vl_Marque != null ?
+                new ObjectParameter("vl_Marque", vl_Marque) :
+                new ObjectParameter("vl_Marque", typeof(string));
+    
+            var cond_NomParameter = cond_Nom != null ?
+                new ObjectParameter("cond_Nom", cond_Nom) :
+                new ObjectParameter("cond_Nom", typeof(string));
+    
+            var cond_PrenomParameter = cond_Prenom != null ?
+                new ObjectParameter("cond_Prenom", cond_Prenom) :
+                new ObjectParameter("cond_Prenom", typeof(string));
+    
+            var grd_IDParameter = grd_ID.HasValue ?
+                new ObjectParameter("grd_ID", grd_ID) :
+                new ObjectParameter("grd_ID", typeof(int));
+    
+            var cond_MleParameter = cond_Mle != null ?
+                new ObjectParameter("cond_Mle", cond_Mle) :
+                new ObjectParameter("cond_Mle", typeof(string));
+    
+            var cond_UniteParameter = cond_Unite != null ?
+                new ObjectParameter("cond_Unite", cond_Unite) :
+                new ObjectParameter("cond_Unite", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Vehicules", vl_IDParameter, vl_MatriculeParameter, vl_GenreParameter, vl_MarqueParameter, cond_NomParameter, cond_PrenomParameter, grd_IDParameter, cond_MleParameter, cond_UniteParameter);
+        }
+    
+        public virtual ObjectResult<Select_Vehicules_Result> Select_Vehicules()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Vehicules_Result>("Select_Vehicules");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> MaxID_Grades()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MaxID_Grades");
+        }
+    
+        public virtual int Delete_Grades(Nullable<int> grd_ID)
+        {
+            var grd_IDParameter = grd_ID.HasValue ?
+                new ObjectParameter("grd_ID", grd_ID) :
+                new ObjectParameter("grd_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Grades", grd_IDParameter);
+        }
+    
+        public virtual int Insert_Grades(Nullable<int> grd_ID, string grd_Libelle)
+        {
+            var grd_IDParameter = grd_ID.HasValue ?
+                new ObjectParameter("grd_ID", grd_ID) :
+                new ObjectParameter("grd_ID", typeof(int));
+    
+            var grd_LibelleParameter = grd_Libelle != null ?
+                new ObjectParameter("grd_Libelle", grd_Libelle) :
+                new ObjectParameter("grd_Libelle", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Grades", grd_IDParameter, grd_LibelleParameter);
+        }
+    
+        public virtual int Update_Grades(Nullable<int> grd_ID, string grd_Libelle)
+        {
+            var grd_IDParameter = grd_ID.HasValue ?
+                new ObjectParameter("grd_ID", grd_ID) :
+                new ObjectParameter("grd_ID", typeof(int));
+    
+            var grd_LibelleParameter = grd_Libelle != null ?
+                new ObjectParameter("grd_Libelle", grd_Libelle) :
+                new ObjectParameter("grd_Libelle", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Grades", grd_IDParameter, grd_LibelleParameter);
+        }
+    
+        public virtual ObjectResult<Select_Grades_Result> Select_Grades()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_Grades_Result>("Select_Grades");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> MaxID_Vehicules()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MaxID_Vehicules");
+        }
+    
+        public virtual ObjectResult<Select_View_VL_Grade_Result> Select_View_VL_Grade()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_View_VL_Grade_Result>("Select_View_VL_Grade");
+        }
     }
 }

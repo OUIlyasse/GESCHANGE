@@ -171,7 +171,9 @@
           <Parameter Name="cond_Mle" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="cond_Unite" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="MaxID_Grades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Search_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
         </Function>
@@ -183,12 +185,16 @@
         </Function>
         <Function Name="Select_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Vehicules_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vl_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Select_View_Operation_Entree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_Operation_Pieces_Entree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_Operation_Pieces_Sortie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_Operation_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_Operation_VL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_VL_Conducteur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_VL_Grade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_VL_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Update_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="entr_ID" Type="int" Mode="In" />
@@ -221,9 +227,14 @@
         </Function>
         <Function Name="Update_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="vl_ID" Type="int" Mode="In" />
-          <Parameter Name="vl_Matricule" Type="nvarchar" Mode="In" />
+          <Parameter Name="vl_Matricule" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="vl_Genre" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="vl_Marque" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cond_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cond_Prenom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="grd_ID" Type="int" Mode="In" />
+          <Parameter Name="cond_Mle" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="cond_Unite" Type="nvarchar(max)" Mode="In" />
         </Function>
         <EntityContainer Name="GESSRMAModelStoreContainer">
           <EntitySet Name="Entrees" EntityType="Self.Entrees" Schema="dbo" store:Type="Tables" />
@@ -405,7 +416,7 @@
           </FunctionImport>
           <FunctionImport Name="MaxID_Pieces" ReturnType="Collection(Int32)" />
           <FunctionImport Name="Select_Pieces_By_ID" EntitySet="Pieces" ReturnType="Collection(GESSRMAModel.Pieces)">
-            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+          <Parameter Name="pies_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Update_Pieces">
             <Parameter Name="pies_ID" Mode="In" Type="Int32" />
@@ -415,8 +426,52 @@
             <Parameter Name="pies_Note" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Delete_Pieces">
-            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+          <Parameter Name="pies_ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Delete_Vehicules">
+          <Parameter Name="vl_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Vehicules">
+            <Parameter Name="vl_ID" Mode="In" Type="Int32" />
+            <Parameter Name="vl_Matricule" Mode="In" Type="String" />
+            <Parameter Name="vl_Genre" Mode="In" Type="String" />
+            <Parameter Name="vl_Marque" Mode="In" Type="String" />
+            <Parameter Name="cond_Nom" Mode="In" Type="String" />
+            <Parameter Name="cond_Prenom" Mode="In" Type="String" />
+            <Parameter Name="grd_ID" Mode="In" Type="Int32" />
+            <Parameter Name="cond_Mle" Mode="In" Type="String" />
+            <Parameter Name="cond_Unite" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Vehicules_By_ID" EntitySet="Vehicules" ReturnType="Collection(GESSRMAModel.Vehicules)">
+          <Parameter Name="vl_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Vehicules">
+            <Parameter Name="vl_ID" Mode="In" Type="Int32" />
+            <Parameter Name="vl_Matricule" Mode="In" Type="String" />
+            <Parameter Name="vl_Genre" Mode="In" Type="String" />
+            <Parameter Name="vl_Marque" Mode="In" Type="String" />
+            <Parameter Name="cond_Nom" Mode="In" Type="String" />
+            <Parameter Name="cond_Prenom" Mode="In" Type="String" />
+            <Parameter Name="grd_ID" Mode="In" Type="Int32" />
+            <Parameter Name="cond_Mle" Mode="In" Type="String" />
+            <Parameter Name="cond_Unite" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Vehicules" ReturnType="Collection(GESSRMAModel.Select_Vehicules_Result)" />
+          <FunctionImport Name="MaxID_Grades" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Delete_Grades">
+          <Parameter Name="grd_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Grades">
+            <Parameter Name="grd_ID" Mode="In" Type="Int32" />
+            <Parameter Name="grd_Libelle" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Grades">
+            <Parameter Name="grd_ID" Mode="In" Type="Int32" />
+            <Parameter Name="grd_Libelle" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Grades" ReturnType="Collection(GESSRMAModel.Select_Grades_Result)" />
+          <FunctionImport Name="MaxID_Vehicules" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Select_View_VL_Grade" ReturnType="Collection(GESSRMAModel.Select_View_VL_Grade_Result)" />
         </EntityContainer>
         <ComplexType Name="Select_Pieces_Result">
           <Property Type="Int32" Name="pies_ID" Nullable="false" />
@@ -424,6 +479,32 @@
           <Property Type="String" Name="pies_Refference" Nullable="true" />
           <Property Type="Int32" Name="pies_Quantite" Nullable="true" />
           <Property Type="String" Name="pies_Note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Grades_Result">
+          <Property Type="Int32" Name="grd_ID" Nullable="false" />
+          <Property Type="String" Name="grd_Libelle" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Vehicules_Result">
+          <Property Type="Int32" Name="vl_ID" Nullable="false" />
+          <Property Type="String" Name="vl_Matricule" Nullable="true" />
+          <Property Type="String" Name="vl_Genre" Nullable="true" />
+          <Property Type="String" Name="vl_Marque" Nullable="true" />
+          <Property Type="String" Name="cond_Nom" Nullable="true" />
+          <Property Type="String" Name="cond_Prenom" Nullable="true" />
+          <Property Type="Int32" Name="grd_ID" Nullable="true" />
+          <Property Type="String" Name="cond_Mle" Nullable="true" />
+          <Property Type="String" Name="cond_Unite" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_View_VL_Grade_Result">
+          <Property Type="Int32" Name="vl_ID" Nullable="false" />
+          <Property Type="String" Name="vl_Matricule" Nullable="true" />
+          <Property Type="String" Name="vl_Genre" Nullable="true" />
+          <Property Type="String" Name="vl_Marque" Nullable="true" />
+          <Property Type="String" Name="cond_Nom" Nullable="true" />
+          <Property Type="String" Name="cond_Prenom" Nullable="true" />
+          <Property Type="String" Name="grd_Libelle" Nullable="true" />
+          <Property Type="String" Name="cond_Mle" Nullable="true" />
+          <Property Type="String" Name="cond_Unite" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -598,15 +679,20 @@
                   <ScalarProperty Name="vl_Matricule" ParameterName="vl_Matricule" />
                   <ScalarProperty Name="vl_ID" ParameterName="vl_ID" />
                 </InsertFunction>
+                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Vehicules">
+                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" />
+                </DeleteFunction>
                 <UpdateFunction FunctionName="GESSRMAModel.Store.Update_Vehicules">
+                  <ScalarProperty Name="cond_Unite" ParameterName="cond_Unite" Version="Current" />
+                  <ScalarProperty Name="cond_Mle" ParameterName="cond_Mle" Version="Current" />
+                  <ScalarProperty Name="grd_ID" ParameterName="grd_ID" Version="Current" />
+                  <ScalarProperty Name="cond_Prenom" ParameterName="cond_Prenom" Version="Current" />
+                  <ScalarProperty Name="cond_Nom" ParameterName="cond_Nom" Version="Current" />
                   <ScalarProperty Name="vl_Marque" ParameterName="vl_Marque" Version="Current" />
                   <ScalarProperty Name="vl_Genre" ParameterName="vl_Genre" Version="Current" />
                   <ScalarProperty Name="vl_Matricule" ParameterName="vl_Matricule" Version="Current" />
                   <ScalarProperty Name="vl_ID" ParameterName="vl_ID" Version="Current" />
                 </UpdateFunction>
-                <DeleteFunction FunctionName="GESSRMAModel.Store.Delete_Vehicules">
-                  <ScalarProperty Name="vl_ID" ParameterName="vl_ID" />
-                </DeleteFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -626,6 +712,53 @@
           <FunctionImportMapping FunctionImportName="Select_Pieces_By_ID" FunctionName="GESSRMAModel.Store.Select_Pieces_By_ID" />
           <FunctionImportMapping FunctionImportName="Update_Pieces" FunctionName="GESSRMAModel.Store.Update_Pieces" />
           <FunctionImportMapping FunctionImportName="Delete_Pieces" FunctionName="GESSRMAModel.Store.Delete_Pieces" />
+          <FunctionImportMapping FunctionImportName="Delete_Vehicules" FunctionName="GESSRMAModel.Store.Delete_Vehicules" />
+          <FunctionImportMapping FunctionImportName="Insert_Vehicules" FunctionName="GESSRMAModel.Store.Insert_Vehicules" />
+          <FunctionImportMapping FunctionImportName="Select_Vehicules_By_ID" FunctionName="GESSRMAModel.Store.Select_Vehicules_By_ID" />
+          <FunctionImportMapping FunctionImportName="Update_Vehicules" FunctionName="GESSRMAModel.Store.Update_Vehicules" />
+          <FunctionImportMapping FunctionImportName="Select_Vehicules" FunctionName="GESSRMAModel.Store.Select_Vehicules">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Select_Vehicules_Result">
+                <ScalarProperty Name="vl_ID" ColumnName="vl_ID" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="cond_Nom" ColumnName="cond_Nom" />
+                <ScalarProperty Name="cond_Prenom" ColumnName="cond_Prenom" />
+                <ScalarProperty Name="grd_ID" ColumnName="grd_ID" />
+                <ScalarProperty Name="cond_Mle" ColumnName="cond_Mle" />
+                <ScalarProperty Name="cond_Unite" ColumnName="cond_Unite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MaxID_Grades" FunctionName="GESSRMAModel.Store.MaxID_Grades" />
+          <FunctionImportMapping FunctionImportName="Delete_Grades" FunctionName="GESSRMAModel.Store.Delete_Grades" />
+          <FunctionImportMapping FunctionImportName="Insert_Grades" FunctionName="GESSRMAModel.Store.Insert_Grades" />
+          <FunctionImportMapping FunctionImportName="Update_Grades" FunctionName="GESSRMAModel.Store.Update_Grades" />
+          <FunctionImportMapping FunctionImportName="Select_Grades" FunctionName="GESSRMAModel.Store.Select_Grades">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Select_Grades_Result">
+                <ScalarProperty Name="grd_ID" ColumnName="grd_ID" />
+                <ScalarProperty Name="grd_Libelle" ColumnName="grd_Libelle" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MaxID_Vehicules" FunctionName="GESSRMAModel.Store.MaxID_Vehicules" />
+          <FunctionImportMapping FunctionImportName="Select_View_VL_Grade" FunctionName="GESSRMAModel.Store.Select_View_VL_Grade">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Select_View_VL_Grade_Result">
+                <ScalarProperty Name="vl_ID" ColumnName="vl_ID" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="cond_Nom" ColumnName="cond_Nom" />
+                <ScalarProperty Name="cond_Prenom" ColumnName="cond_Prenom" />
+                <ScalarProperty Name="grd_Libelle" ColumnName="grd_Libelle" />
+                <ScalarProperty Name="cond_Mle" ColumnName="cond_Mle" />
+                <ScalarProperty Name="cond_Unite" ColumnName="cond_Unite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

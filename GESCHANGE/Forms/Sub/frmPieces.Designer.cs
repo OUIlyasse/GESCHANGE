@@ -163,6 +163,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pièce";
             this.Activated += new System.EventHandler(this.frmPieces_Activated);
+            this.Load += new System.EventHandler(this.frmPieces_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -80,7 +80,16 @@
     <Compile Include="Db\Pieces.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Db\Select_Grades_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Db\Select_Pieces_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Select_Vehicules_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Select_View_VL_Grade_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Sorties.cs">
@@ -116,6 +125,12 @@
     <Compile Include="Forms\Sub\frmPieces.Designer.cs">
       <DependentUpon>frmPieces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Sub\frmVehicules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub\frmVehicules.Designer.cs">
+      <DependentUpon>frmVehicules.cs</DependentUpon>
+    </Compile>
     <Compile Include="Proc\CRUD.cs" />
     <Compile Include="Proc\iData.cs" />
     <Compile Include="Program.cs" />
@@ -126,8 +141,14 @@
     <EmbeddedResource Include="Forms\Sub\frmListPieces.resx">
       <DependentUpon>frmListPieces.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmListVehicules.resx">
+      <DependentUpon>frmListVehicules.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sub\frmPieces.resx">
       <DependentUpon>frmPieces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmVehicules.resx">
+      <DependentUpon>frmVehicules.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

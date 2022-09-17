@@ -130,6 +130,7 @@ namespace GESCHANGE.Forms.Sub
         {
             InitializeComponent();
             flp = f;
+            VerifyButtons();
         }
 
         public frmPieces(frmListPieces f, string n, string r, string q, string o)
@@ -140,6 +141,7 @@ namespace GESCHANGE.Forms.Sub
             txtReff.Text = r;
             txtQuantite.Text = q;
             txtNote.Text = o;
+            VerifyButtons();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -195,6 +197,11 @@ namespace GESCHANGE.Forms.Sub
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmPieces_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
