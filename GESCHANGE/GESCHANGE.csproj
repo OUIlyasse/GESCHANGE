@@ -194,8 +194,6 @@
     <Compile Include="Forms\Sub\frmVehicules.Designer.cs">
       <DependentUpon>frmVehicules.cs</DependentUpon>
     </Compile>
-    <Compile Include="Proc\CRUD.cs" />
-    <Compile Include="Proc\iData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Main\frmLogin.resx">
