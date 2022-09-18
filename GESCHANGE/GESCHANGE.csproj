@@ -80,7 +80,34 @@
     <Compile Include="Db\Grades.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Db\masterModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>masterModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\masterModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>masterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\masterModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>masterModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Db\Pieces.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Search_Entrees_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Search_Pieces_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Search_Sorties_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Search_Vehicules_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Select_Entrees_By_ID_Result.cs">
@@ -146,6 +173,12 @@
     <Compile Include="Forms\Main\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Sub\frmBD_RD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub\frmBD_RD.Designer.cs">
+      <DependentUpon>frmBD_RD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Sub\frmENew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +235,9 @@
     <EmbeddedResource Include="Forms\Main\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmBD_RD.resx">
+      <DependentUpon>frmBD_RD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sub\frmENew.resx">
       <DependentUpon>frmENew.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +279,13 @@
     <None Include="Db\GESSRMA.edmx.diagram">
       <DependentUpon>GESSRMA.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="Db\masterModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>masterModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Db\masterModel.edmx.diagram">
+      <DependentUpon>masterModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -273,6 +316,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GESSRMA.edmx</DependentUpon>
       <LastGenOutput>GESSRMA.cs</LastGenOutput>
+    </Content>
+    <Content Include="Db\masterModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>masterModel.edmx</DependentUpon>
+      <LastGenOutput>masterModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Db\masterModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>masterModel.edmx</DependentUpon>
+      <LastGenOutput>masterModel.cs</LastGenOutput>
     </Content>
     <None Include="Resources\icons8-supprimer-le-fichier-36.png" />
     <None Include="Resources\icons8-plus-25.png" />

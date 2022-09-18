@@ -11,6 +11,7 @@ namespace GESCHANGE.Forms.Sub
 
         private GESSRMAEntities db = new GESSRMAEntities();
         public string id;
+        private string mode = string.Empty;
 
         #endregion Variables
 
@@ -19,6 +20,12 @@ namespace GESCHANGE.Forms.Sub
         public void getData()
         {
             dgvSorties.DataSource = db.Select_View_SP_Sorties();
+            lblLigne.Text = string.Format("Ligne {0}", dgvSorties.RowCount);
+        }
+
+        public void Search(string mode, string txt, DateTime dt1, DateTime dt2)
+        {
+            dgvSorties.DataSource = db.Search_Sorties(mode, txt, dt1, dt2);
             lblLigne.Text = string.Format("Ligne {0}", dgvSorties.RowCount);
         }
 
@@ -33,6 +40,7 @@ namespace GESCHANGE.Forms.Sub
         {
             getData();
             btnDelete.Enabled = false;
+            rdoVL.Checked = true;
         }
 
         private void dgvSorties_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -87,6 +95,59 @@ namespace GESCHANGE.Forms.Sub
             frmSNew f = new frmSNew(this);
             f.Text = "Nouvelle opération de sortie";
             f.ShowDialog();
+        }
+
+        private void rdoRefference_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Refference";
+            dtp1.Visible = false;
+            dtp2.Visible = false;
+            txtSearch.Visible = true;
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoPieces_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Pieces";
+            dtp1.Visible = false;
+            dtp2.Visible = false;
+            txtSearch.Visible = true;
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoDate_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Date";
+            dtp1.Visible = true;
+            dtp2.Visible = true;
+            txtSearch.Visible = false;
+        }
+
+        private void dtp1_ValueChanged(object sender, EventArgs e)
+        {
+            Search(mode, txtSearch.Text, dtp1.Value.Date, dtp2.Value.Date);
+        }
+
+        private void dtp2_ValueChanged(object sender, EventArgs e)
+        {
+            Search(mode, txtSearch.Text, dtp1.Value.Date, dtp2.Value.Date);
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Search(mode, txtSearch.Text, dtp1.Value.Date, dtp2.Value.Date);
+        }
+
+        private void rdoVL_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "VL";
+            dtp1.Visible = false;
+            dtp2.Visible = false;
+            txtSearch.Visible = true;
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
         }
     }
 }

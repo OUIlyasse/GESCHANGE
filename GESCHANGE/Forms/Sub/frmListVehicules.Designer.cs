@@ -45,6 +45,11 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoMleFA = new System.Windows.Forms.RadioButton();
+            this.rdoGrade = new System.Windows.Forms.RadioButton();
+            this.rdoNomPrenom = new System.Windows.Forms.RadioButton();
+            this.rdoVL = new System.Windows.Forms.RadioButton();
+            this.rdoUnite = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVehicules)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -192,7 +197,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = global::GESCHANGE.Properties.Resources.icons8_supprimer_le_fichier_36;
-            this.btnDelete.Location = new System.Drawing.Point(733, 14);
+            this.btnDelete.Location = new System.Drawing.Point(733, 16);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(45, 42);
             this.btnDelete.TabIndex = 3;
@@ -206,7 +211,7 @@
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Image = global::GESCHANGE.Properties.Resources.icons8_nouveau_fichier_36;
-            this.btnNew.Location = new System.Drawing.Point(784, 14);
+            this.btnNew.Location = new System.Drawing.Point(784, 16);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(45, 42);
             this.btnNew.TabIndex = 2;
@@ -219,11 +224,12 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(303, 27);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Location = new System.Drawing.Point(6, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 23);
             this.label1.TabIndex = 0;
@@ -233,6 +239,11 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rdoUnite);
+            this.groupBox1.Controls.Add(this.rdoMleFA);
+            this.groupBox1.Controls.Add(this.rdoGrade);
+            this.groupBox1.Controls.Add(this.rdoNomPrenom);
+            this.groupBox1.Controls.Add(this.rdoVL);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnNew);
             this.groupBox1.Controls.Add(this.txtSearch);
@@ -242,6 +253,66 @@
             this.groupBox1.Size = new System.Drawing.Size(840, 70);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
+            // 
+            // rdoMleFA
+            // 
+            this.rdoMleFA.AutoSize = true;
+            this.rdoMleFA.Location = new System.Drawing.Point(686, 24);
+            this.rdoMleFA.Name = "rdoMleFA";
+            this.rdoMleFA.Size = new System.Drawing.Size(80, 27);
+            this.rdoMleFA.TabIndex = 11;
+            this.rdoMleFA.TabStop = true;
+            this.rdoMleFA.Text = "Mle FA";
+            this.rdoMleFA.UseVisualStyleBackColor = true;
+            this.rdoMleFA.CheckedChanged += new System.EventHandler(this.rdoMleFA_CheckedChanged);
+            // 
+            // rdoGrade
+            // 
+            this.rdoGrade.AutoSize = true;
+            this.rdoGrade.Location = new System.Drawing.Point(609, 24);
+            this.rdoGrade.Name = "rdoGrade";
+            this.rdoGrade.Size = new System.Drawing.Size(77, 27);
+            this.rdoGrade.TabIndex = 10;
+            this.rdoGrade.TabStop = true;
+            this.rdoGrade.Text = "Grade";
+            this.rdoGrade.UseVisualStyleBackColor = true;
+            this.rdoGrade.CheckedChanged += new System.EventHandler(this.rdoGrade_CheckedChanged);
+            // 
+            // rdoNomPrenom
+            // 
+            this.rdoNomPrenom.AutoSize = true;
+            this.rdoNomPrenom.Location = new System.Drawing.Point(469, 24);
+            this.rdoNomPrenom.Name = "rdoNomPrenom";
+            this.rdoNomPrenom.Size = new System.Drawing.Size(140, 27);
+            this.rdoNomPrenom.TabIndex = 9;
+            this.rdoNomPrenom.TabStop = true;
+            this.rdoNomPrenom.Text = "Nom / Prénom";
+            this.rdoNomPrenom.UseVisualStyleBackColor = true;
+            this.rdoNomPrenom.CheckedChanged += new System.EventHandler(this.rdoNomPrenom_CheckedChanged);
+            // 
+            // rdoVL
+            // 
+            this.rdoVL.AutoSize = true;
+            this.rdoVL.Location = new System.Drawing.Point(419, 24);
+            this.rdoVL.Name = "rdoVL";
+            this.rdoVL.Size = new System.Drawing.Size(50, 27);
+            this.rdoVL.TabIndex = 8;
+            this.rdoVL.TabStop = true;
+            this.rdoVL.Text = "VL";
+            this.rdoVL.UseVisualStyleBackColor = true;
+            this.rdoVL.CheckedChanged += new System.EventHandler(this.rdoVL_CheckedChanged);
+            // 
+            // rdoUnite
+            // 
+            this.rdoUnite.AutoSize = true;
+            this.rdoUnite.Location = new System.Drawing.Point(766, 24);
+            this.rdoUnite.Name = "rdoUnite";
+            this.rdoUnite.Size = new System.Drawing.Size(72, 27);
+            this.rdoUnite.TabIndex = 12;
+            this.rdoUnite.TabStop = true;
+            this.rdoUnite.Text = "Unité";
+            this.rdoUnite.UseVisualStyleBackColor = true;
+            this.rdoUnite.CheckedChanged += new System.EventHandler(this.rdoUnite_CheckedChanged);
             // 
             // frmListVehicules
             // 
@@ -288,5 +359,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.Label lblLigne;
+        private System.Windows.Forms.RadioButton rdoUnite;
+        private System.Windows.Forms.RadioButton rdoMleFA;
+        private System.Windows.Forms.RadioButton rdoGrade;
+        private System.Windows.Forms.RadioButton rdoNomPrenom;
+        private System.Windows.Forms.RadioButton rdoVL;
     }
 }

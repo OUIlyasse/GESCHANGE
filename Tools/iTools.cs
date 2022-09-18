@@ -6,14 +6,14 @@ namespace Tools
 {
     public static class iTools
     {
-        public static void Backup(string db, out string backup)
+        public static void Backup()
         {
-            FolderBrowserDialog fb = new FolderBrowserDialog();
-            backup = string.Empty;
-            if (fb.ShowDialog() == DialogResult.OK)
-            {
-                backup = string.Format("{0}\\{1}_{2}.bak", fb.SelectedPath, db, DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss"));
-            }
+            //FolderBrowserDialog fb = new FolderBrowserDialog();
+            //backup = string.Empty;
+            //if (fb.ShowDialog() == DialogResult.OK)
+            //{
+            //    backup = string.Format("{0}\\{1}_{2}.bak", fb.SelectedPath, db, DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss"));
+            //}
         }
 
         public static void ClearAllTextBox(Form frm)

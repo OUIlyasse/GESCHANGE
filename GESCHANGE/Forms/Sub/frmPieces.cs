@@ -55,7 +55,7 @@ namespace GESCHANGE.Forms.Sub
                 }
                 else
                 {
-                    db.Insert_Pieces(maxId, txtNom.Text.Trim().ToUpper(), txtReff.Text.Trim().ToUpper(), 10, txtNote.Text);// verifie
+                    db.Insert_Pieces(maxId, txtNom.Text.Trim().ToUpper(), txtReff.Text.Trim().ToUpper(), 0, txtNote.Text);
                     db.SaveChanges();
                     return true;
                 }

@@ -11,6 +11,7 @@ namespace GESCHANGE.Forms.Sub
 
         private GESSRMAEntities db = new GESSRMAEntities();
         public string idVL = string.Empty;
+        private string mode = string.Empty;
 
         #endregion Variables
 
@@ -19,6 +20,12 @@ namespace GESCHANGE.Forms.Sub
         public void getData()
         {
             dgvVehicules.DataSource = db.Select_View_VL_Grade().ToList();
+            lblLigne.Text = string.Format("Ligne {0}", dgvVehicules.RowCount);
+        }
+
+        public void Search(string mode, string txt)
+        {
+            dgvVehicules.DataSource = db.Search_Vehicules(mode, txt);
             lblLigne.Text = string.Format("Ligne {0}", dgvVehicules.RowCount);
         }
 
@@ -40,6 +47,8 @@ namespace GESCHANGE.Forms.Sub
         private void frmListVehicules_Load(object sender, EventArgs e)
         {
             getData();
+            btnDelete.Enabled = false;
+            rdoVL.Checked = true;
         }
 
         private void dgvVehicules_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -87,6 +96,46 @@ namespace GESCHANGE.Forms.Sub
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Search(mode, txtSearch.Text);
+        }
+
+        private void rdoNomPrenom_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Nom_Prenom";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoGrade_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Grade";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoMleFA_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "MleFA";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoUnite_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Unite";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoVL_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "VL";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
         }
     }
 }

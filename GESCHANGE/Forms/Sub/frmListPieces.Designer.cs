@@ -41,6 +41,8 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.rdoRefference = new System.Windows.Forms.RadioButton();
+            this.rdoNom = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPieces)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -144,6 +146,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.rdoRefference);
+            this.groupBox1.Controls.Add(this.rdoNom);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnNew);
             this.groupBox1.Controls.Add(this.txtSearch);
@@ -162,7 +166,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = global::GESCHANGE.Properties.Resources.icons8_supprimer_le_fichier_36;
-            this.btnDelete.Location = new System.Drawing.Point(733, 14);
+            this.btnDelete.Location = new System.Drawing.Point(733, 16);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(45, 42);
             this.btnDelete.TabIndex = 3;
@@ -177,7 +181,7 @@
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Image = global::GESCHANGE.Properties.Resources.icons8_nouveau_fichier_36;
-            this.btnNew.Location = new System.Drawing.Point(784, 14);
+            this.btnNew.Location = new System.Drawing.Point(784, 16);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(45, 42);
             this.btnNew.TabIndex = 2;
@@ -190,15 +194,40 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(303, 27);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Location = new System.Drawing.Point(6, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Recherche";
+            // 
+            // rdoRefference
+            // 
+            this.rdoRefference.AutoSize = true;
+            this.rdoRefference.Location = new System.Drawing.Point(500, 24);
+            this.rdoRefference.Name = "rdoRefference";
+            this.rdoRefference.Size = new System.Drawing.Size(135, 27);
+            this.rdoRefference.TabIndex = 12;
+            this.rdoRefference.TabStop = true;
+            this.rdoRefference.Text = "Reff. de pièce";
+            this.rdoRefference.UseVisualStyleBackColor = true;
+            this.rdoRefference.CheckedChanged += new System.EventHandler(this.rdoRefference_CheckedChanged);
+            // 
+            // rdoNom
+            // 
+            this.rdoNom.AutoSize = true;
+            this.rdoNom.Location = new System.Drawing.Point(426, 24);
+            this.rdoNom.Name = "rdoNom";
+            this.rdoNom.Size = new System.Drawing.Size(65, 27);
+            this.rdoNom.TabIndex = 11;
+            this.rdoNom.TabStop = true;
+            this.rdoNom.Text = "Nom";
+            this.rdoNom.UseVisualStyleBackColor = true;
+            this.rdoNom.CheckedChanged += new System.EventHandler(this.rdoNom_CheckedChanged);
             // 
             // frmListPieces
             // 
@@ -239,5 +268,7 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblLigne;
+        private System.Windows.Forms.RadioButton rdoRefference;
+        private System.Windows.Forms.RadioButton rdoNom;
     }
 }

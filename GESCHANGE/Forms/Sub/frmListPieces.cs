@@ -11,6 +11,7 @@ namespace GESCHANGE.Forms.Sub
 
         private GESSRMAEntities db = new GESSRMAEntities();
         public string id;
+        private string mode = string.Empty;
 
         #endregion Variables
 
@@ -19,6 +20,12 @@ namespace GESCHANGE.Forms.Sub
         public void getData()
         {
             dgvPieces.DataSource = db.Select_Pieces();
+            lblLigne.Text = string.Format("Ligne {0}", dgvPieces.RowCount);
+        }
+
+        public void Search(string mode, string txt)
+        {
+            dgvPieces.DataSource = db.Search_Pieces(mode, txt);
             lblLigne.Text = string.Format("Ligne {0}", dgvPieces.RowCount);
         }
 
@@ -33,6 +40,7 @@ namespace GESCHANGE.Forms.Sub
         {
             getData();
             btnDelete.Enabled = false;
+            rdoNom.Checked = true;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -92,6 +100,25 @@ namespace GESCHANGE.Forms.Sub
                 }
                 catch (Exception) { }
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Search(mode, txtSearch.Text);
+        }
+
+        private void rdoRefference_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Refference";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
+        }
+
+        private void rdoNom_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Pieces";
+            txtSearch.Text = string.Empty;
+            txtSearch.Focus();
         }
     }
 }

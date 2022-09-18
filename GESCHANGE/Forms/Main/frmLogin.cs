@@ -31,33 +31,40 @@ namespace GESCHANGE.Forms.Main
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Users rs = db.Select_Users_Where(txtUser.Text).FirstOrDefault();
-            if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtPass.Text))
+            try
             {
-                MessageBox.Show("Votre champs est vide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUser.Focus();
-            }
-            else
-            {
-                if (rs.user_Name != null)
+                Users rs = db.Select_Users_Where(txtUser.Text).FirstOrDefault();
+                if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtPass.Text))
                 {
-                    if (rs.user_Password.Equals(txtPass.Text))
-                    {
-                        frmMain f = new frmMain();
-                        f.Show();
-                        Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Votre mot de passe est incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtPass.Focus();
-                    }
+                    MessageBox.Show("Votre champs est vide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUser.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("Votre identifiant est incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtPass.Focus();
+                    if (rs.user_Name != null)
+                    {
+                        if (rs.user_Password.Equals(txtPass.Text))
+                        {
+                            frmMain f = new frmMain();
+                            f.Show();
+                            Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Votre mot de passe est incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            txtPass.Focus();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Votre identifiant est incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtPass.Focus();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

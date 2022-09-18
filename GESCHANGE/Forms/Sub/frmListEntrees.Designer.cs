@@ -38,10 +38,16 @@
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.piesNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoDate = new System.Windows.Forms.RadioButton();
+            this.rdoPieces = new System.Windows.Forms.RadioButton();
+            this.rdoRefference = new System.Windows.Forms.RadioButton();
+            this.rdoFournisseur = new System.Windows.Forms.RadioButton();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtp1 = new System.Windows.Forms.DateTimePicker();
+            this.dtp2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntrees)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -153,6 +159,12 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.dtp2);
+            this.groupBox1.Controls.Add(this.dtp1);
+            this.groupBox1.Controls.Add(this.rdoDate);
+            this.groupBox1.Controls.Add(this.rdoPieces);
+            this.groupBox1.Controls.Add(this.rdoRefference);
+            this.groupBox1.Controls.Add(this.rdoFournisseur);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnNew);
             this.groupBox1.Controls.Add(this.txtSearch);
@@ -163,6 +175,54 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // rdoDate
+            // 
+            this.rdoDate.AutoSize = true;
+            this.rdoDate.Location = new System.Drawing.Point(654, 24);
+            this.rdoDate.Name = "rdoDate";
+            this.rdoDate.Size = new System.Drawing.Size(66, 27);
+            this.rdoDate.TabIndex = 7;
+            this.rdoDate.TabStop = true;
+            this.rdoDate.Text = "Date";
+            this.rdoDate.UseVisualStyleBackColor = true;
+            this.rdoDate.CheckedChanged += new System.EventHandler(this.rdoDate_CheckedChanged);
+            // 
+            // rdoPieces
+            // 
+            this.rdoPieces.AutoSize = true;
+            this.rdoPieces.Location = new System.Drawing.Point(578, 24);
+            this.rdoPieces.Name = "rdoPieces";
+            this.rdoPieces.Size = new System.Drawing.Size(70, 27);
+            this.rdoPieces.TabIndex = 6;
+            this.rdoPieces.TabStop = true;
+            this.rdoPieces.Text = "Pièce";
+            this.rdoPieces.UseVisualStyleBackColor = true;
+            this.rdoPieces.CheckedChanged += new System.EventHandler(this.rdoPieces_CheckedChanged);
+            // 
+            // rdoRefference
+            // 
+            this.rdoRefference.AutoSize = true;
+            this.rdoRefference.Location = new System.Drawing.Point(505, 24);
+            this.rdoRefference.Name = "rdoRefference";
+            this.rdoRefference.Size = new System.Drawing.Size(67, 27);
+            this.rdoRefference.TabIndex = 5;
+            this.rdoRefference.TabStop = true;
+            this.rdoRefference.Text = "Reff.";
+            this.rdoRefference.UseVisualStyleBackColor = true;
+            this.rdoRefference.CheckedChanged += new System.EventHandler(this.rdoRefference_CheckedChanged);
+            // 
+            // rdoFournisseur
+            // 
+            this.rdoFournisseur.AutoSize = true;
+            this.rdoFournisseur.Location = new System.Drawing.Point(419, 24);
+            this.rdoFournisseur.Name = "rdoFournisseur";
+            this.rdoFournisseur.Size = new System.Drawing.Size(80, 27);
+            this.rdoFournisseur.TabIndex = 4;
+            this.rdoFournisseur.TabStop = true;
+            this.rdoFournisseur.Text = "Fourn.";
+            this.rdoFournisseur.UseVisualStyleBackColor = true;
+            this.rdoFournisseur.CheckedChanged += new System.EventHandler(this.rdoFournisseur_CheckedChanged);
+            // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -170,7 +230,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Image = global::GESCHANGE.Properties.Resources.icons8_supprimer_le_fichier_36;
-            this.btnDelete.Location = new System.Drawing.Point(733, 14);
+            this.btnDelete.Location = new System.Drawing.Point(733, 16);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(45, 42);
             this.btnDelete.TabIndex = 3;
@@ -184,7 +244,7 @@
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Image = global::GESCHANGE.Properties.Resources.icons8_nouveau_fichier_36;
-            this.btnNew.Location = new System.Drawing.Point(784, 14);
+            this.btnNew.Location = new System.Drawing.Point(784, 16);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(45, 42);
             this.btnNew.TabIndex = 2;
@@ -197,16 +257,36 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(303, 27);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Location = new System.Drawing.Point(6, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Recherche";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // dtp1
+            // 
+            this.dtp1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp1.Location = new System.Drawing.Point(110, 22);
+            this.dtp1.Name = "dtp1";
+            this.dtp1.Size = new System.Drawing.Size(126, 27);
+            this.dtp1.TabIndex = 6;
+            this.dtp1.Visible = false;
+            this.dtp1.ValueChanged += new System.EventHandler(this.dtp1_ValueChanged);
+            // 
+            // dtp2
+            // 
+            this.dtp2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp2.Location = new System.Drawing.Point(283, 23);
+            this.dtp2.Name = "dtp2";
+            this.dtp2.Size = new System.Drawing.Size(126, 27);
+            this.dtp2.TabIndex = 8;
+            this.dtp2.Visible = false;
+            this.dtp2.ValueChanged += new System.EventHandler(this.dtp2_ValueChanged);
             // 
             // frmListEntrees
             // 
@@ -250,5 +330,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantite;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
         private System.Windows.Forms.DataGridViewTextBoxColumn piesNom;
+        private System.Windows.Forms.RadioButton rdoDate;
+        private System.Windows.Forms.RadioButton rdoPieces;
+        private System.Windows.Forms.RadioButton rdoRefference;
+        private System.Windows.Forms.RadioButton rdoFournisseur;
+        private System.Windows.Forms.DateTimePicker dtp2;
+        private System.Windows.Forms.DateTimePicker dtp1;
     }
 }

@@ -565,5 +565,91 @@ namespace GESCHANGE.Db
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Users>("Select_Users_Where", mergeOption, user_NameParameter);
         }
+    
+        public virtual ObjectResult<Search_Entrees_Result> Search_Entrees(string mode, string search, Nullable<System.DateTime> dt1, Nullable<System.DateTime> dt2)
+        {
+            var modeParameter = mode != null ?
+                new ObjectParameter("mode", mode) :
+                new ObjectParameter("mode", typeof(string));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            var dt1Parameter = dt1.HasValue ?
+                new ObjectParameter("dt1", dt1) :
+                new ObjectParameter("dt1", typeof(System.DateTime));
+    
+            var dt2Parameter = dt2.HasValue ?
+                new ObjectParameter("dt2", dt2) :
+                new ObjectParameter("dt2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Search_Entrees_Result>("Search_Entrees", modeParameter, searchParameter, dt1Parameter, dt2Parameter);
+        }
+    
+        public virtual ObjectResult<Search_Sorties_Result> Search_Sorties(string mode, string search, Nullable<System.DateTime> dt1, Nullable<System.DateTime> dt2)
+        {
+            var modeParameter = mode != null ?
+                new ObjectParameter("mode", mode) :
+                new ObjectParameter("mode", typeof(string));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            var dt1Parameter = dt1.HasValue ?
+                new ObjectParameter("dt1", dt1) :
+                new ObjectParameter("dt1", typeof(System.DateTime));
+    
+            var dt2Parameter = dt2.HasValue ?
+                new ObjectParameter("dt2", dt2) :
+                new ObjectParameter("dt2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Search_Sorties_Result>("Search_Sorties", modeParameter, searchParameter, dt1Parameter, dt2Parameter);
+        }
+    
+        public virtual ObjectResult<Search_Pieces_Result> Search_Pieces(string mode, string search)
+        {
+            var modeParameter = mode != null ?
+                new ObjectParameter("mode", mode) :
+                new ObjectParameter("mode", typeof(string));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Search_Pieces_Result>("Search_Pieces", modeParameter, searchParameter);
+        }
+    
+        public virtual ObjectResult<Search_Vehicules_Result> Search_Vehicules(string mode, string search)
+        {
+            var modeParameter = mode != null ?
+                new ObjectParameter("mode", mode) :
+                new ObjectParameter("mode", typeof(string));
+    
+            var searchParameter = search != null ?
+                new ObjectParameter("Search", search) :
+                new ObjectParameter("Search", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Search_Vehicules_Result>("Search_Vehicules", modeParameter, searchParameter);
+        }
+    
+        public virtual int Backup_Database(string path)
+        {
+            var pathParameter = path != null ?
+                new ObjectParameter("path", path) :
+                new ObjectParameter("path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Backup_Database", pathParameter);
+        }
+    
+        public virtual int Restore_Database(string path)
+        {
+            var pathParameter = path != null ?
+                new ObjectParameter("path", path) :
+                new ObjectParameter("path", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Restore_Database", pathParameter);
+        }
     }
 }

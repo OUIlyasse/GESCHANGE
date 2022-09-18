@@ -53,5 +53,11 @@ namespace GESCHANGE.Forms.Main
         {
             Application.Exit();
         }
+
+        private void menuSB_RB_Click(object sender, EventArgs e)
+        {
+            frmBD_RD fLs = new frmBD_RD();
+            fLs.ShowDialog();
+        }
     }
 }

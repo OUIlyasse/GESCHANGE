@@ -35,8 +35,7 @@
             this.menuEntree = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSorties = new System.Windows.Forms.ToolStripMenuItem();
             this.paramètresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSauvegarde = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuRestaure = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSB_RB = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -95,23 +94,17 @@
             // paramètresToolStripMenuItem
             // 
             this.paramètresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuSauvegarde,
-            this.menuRestaure});
+            this.menuSB_RB});
             this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
             this.paramètresToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.paramètresToolStripMenuItem.Text = "Paramètres";
             // 
-            // menuSauvegarde
+            // menuSB_RB
             // 
-            this.menuSauvegarde.Name = "menuSauvegarde";
-            this.menuSauvegarde.Size = new System.Drawing.Size(278, 26);
-            this.menuSauvegarde.Text = "&Sauvegarde base de données";
-            // 
-            // menuRestaure
-            // 
-            this.menuRestaure.Name = "menuRestaure";
-            this.menuRestaure.Size = new System.Drawing.Size(278, 26);
-            this.menuRestaure.Text = "&Restaurer base de données";
+            this.menuSB_RB.Name = "menuSB_RB";
+            this.menuSB_RB.Size = new System.Drawing.Size(245, 26);
+            this.menuSB_RB.Text = "&Sauvegarde et &Restaurer";
+            this.menuSB_RB.Click += new System.EventHandler(this.menuSB_RB_Click);
             // 
             // pnlMenu
             // 
@@ -152,8 +145,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuEntree;
         private System.Windows.Forms.ToolStripMenuItem menuSorties;
         private System.Windows.Forms.ToolStripMenuItem paramètresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuSauvegarde;
-        private System.Windows.Forms.ToolStripMenuItem menuRestaure;
+        private System.Windows.Forms.ToolStripMenuItem menuSB_RB;
         private System.Windows.Forms.Panel pnlMenu;
     }
 }

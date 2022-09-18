@@ -161,6 +161,9 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Backup_Database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="path" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Delete_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="entr_ID" Type="int" Mode="In" />
         </Function>
@@ -221,7 +224,27 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
         <Function Name="MaxID_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Restore_Database" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="path" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Search_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="dt1" Type="date" Mode="In" />
+          <Parameter Name="dt2" Type="date" Mode="In" />
+        </Function>
         <Function Name="Search_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Search_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="dt1" Type="date" Mode="In" />
+          <Parameter Name="dt2" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Search_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mode" Type="nvarchar" Mode="In" />
           <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Select_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -635,7 +658,33 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
             <Parameter Name="pies_Quantite" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Select_Users_Where" EntitySet="Users" ReturnType="Collection(GESSRMAModel.Users)">
-            <Parameter Name="user_Name" Mode="In" Type="String" />
+          <Parameter Name="user_Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_Entrees" ReturnType="Collection(GESSRMAModel.Search_Entrees_Result)">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+            <Parameter Name="dt1" Mode="In" Type="DateTime" />
+            <Parameter Name="dt2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Search_Sorties" ReturnType="Collection(GESSRMAModel.Search_Sorties_Result)">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+            <Parameter Name="dt1" Mode="In" Type="DateTime" />
+            <Parameter Name="dt2" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Search_Pieces" ReturnType="Collection(GESSRMAModel.Search_Pieces_Result)">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Search_Vehicules" ReturnType="Collection(GESSRMAModel.Search_Vehicules_Result)">
+            <Parameter Name="mode" Mode="In" Type="String" />
+            <Parameter Name="Search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Backup_Database">
+            <Parameter Name="path" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Restore_Database">
+            <Parameter Name="path" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Pieces_Result">
@@ -769,6 +818,43 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
           <Property Type="Int32" Name="user_ID" Nullable="false" />
           <Property Type="String" Name="user_Name" Nullable="false" />
           <Property Type="String" Name="user_Password" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Search_Entrees_Result">
+          <Property Type="Int32" Name="entr_ID" Nullable="false" />
+          <Property Type="String" Name="entr_Fournisseur" Nullable="true" />
+          <Property Type="DateTime" Name="entr_Date" Nullable="true" />
+          <Property Type="String" Name="entr_Refference" Nullable="true" />
+          <Property Type="Int32" Name="entr_Quantite" Nullable="true" />
+          <Property Type="String" Name="pies_Nom" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Search_Sorties_Result">
+          <Property Type="Int32" Name="srt_ID" Nullable="false" />
+          <Property Type="DateTime" Name="srt_Date" Nullable="true" />
+          <Property Type="String" Name="srt_Refference" Nullable="true" />
+          <Property Type="Int32" Name="srt_Quantite" Nullable="true" />
+          <Property Type="String" Name="vl_Matricule" Nullable="true" />
+          <Property Type="String" Name="vl_Genre" Nullable="true" />
+          <Property Type="String" Name="vl_Marque" Nullable="true" />
+          <Property Type="String" Name="pies_Nom" Nullable="true" />
+          <Property Type="String" Name="pies_Refference" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Search_Pieces_Result">
+          <Property Type="Int32" Name="pies_ID" Nullable="false" />
+          <Property Type="String" Name="pies_Nom" Nullable="true" />
+          <Property Type="String" Name="pies_Refference" Nullable="true" />
+          <Property Type="Int32" Name="pies_Quantite" Nullable="true" />
+          <Property Type="String" Name="pies_Note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Search_Vehicules_Result">
+          <Property Type="Int32" Name="vl_ID" Nullable="false" />
+          <Property Type="String" Name="vl_Matricule" Nullable="true" />
+          <Property Type="String" Name="vl_Genre" Nullable="true" />
+          <Property Type="String" Name="vl_Marque" Nullable="true" />
+          <Property Type="String" Name="cond_Nom" Nullable="true" />
+          <Property Type="String" Name="cond_Prenom" Nullable="true" />
+          <Property Type="String" Name="grd_Libelle" Nullable="true" />
+          <Property Type="String" Name="cond_Mle" Nullable="true" />
+          <Property Type="String" Name="cond_Unite" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1111,6 +1197,61 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
           <FunctionImportMapping FunctionImportName="Update_Pieces_Quantite_By_Name" FunctionName="GESSRMAModel.Store.Update_Pieces_Quantite_By_Name" />
           <FunctionImportMapping FunctionImportName="Select_Users_Where" FunctionName="GESSRMAModel.Store.Select_Users_Where">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_Entrees" FunctionName="GESSRMAModel.Store.Search_Entrees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Search_Entrees_Result">
+                <ScalarProperty Name="entr_ID" ColumnName="entr_ID" />
+                <ScalarProperty Name="entr_Fournisseur" ColumnName="entr_Fournisseur" />
+                <ScalarProperty Name="entr_Date" ColumnName="entr_Date" />
+                <ScalarProperty Name="entr_Refference" ColumnName="entr_Refference" />
+                <ScalarProperty Name="entr_Quantite" ColumnName="entr_Quantite" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_Sorties" FunctionName="GESSRMAModel.Store.Search_Sorties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Search_Sorties_Result">
+                <ScalarProperty Name="srt_ID" ColumnName="srt_ID" />
+                <ScalarProperty Name="srt_Date" ColumnName="srt_Date" />
+                <ScalarProperty Name="srt_Refference" ColumnName="srt_Refference" />
+                <ScalarProperty Name="srt_Quantite" ColumnName="srt_Quantite" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="pies_Refference" ColumnName="pies_Refference" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_Pieces" FunctionName="GESSRMAModel.Store.Search_Pieces">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Search_Pieces_Result">
+                <ScalarProperty Name="pies_ID" ColumnName="pies_ID" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="pies_Refference" ColumnName="pies_Refference" />
+                <ScalarProperty Name="pies_Quantite" ColumnName="pies_Quantite" />
+                <ScalarProperty Name="pies_Note" ColumnName="pies_Note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Search_Vehicules" FunctionName="GESSRMAModel.Store.Search_Vehicules">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Search_Vehicules_Result">
+                <ScalarProperty Name="vl_ID" ColumnName="vl_ID" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="cond_Nom" ColumnName="cond_Nom" />
+                <ScalarProperty Name="cond_Prenom" ColumnName="cond_Prenom" />
+                <ScalarProperty Name="grd_Libelle" ColumnName="grd_Libelle" />
+                <ScalarProperty Name="cond_Mle" ColumnName="cond_Mle" />
+                <ScalarProperty Name="cond_Unite" ColumnName="cond_Unite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Backup_Database" FunctionName="GESSRMAModel.Store.Backup_Database" />
+          <FunctionImportMapping FunctionImportName="Restore_Database" FunctionName="GESSRMAModel.Store.Restore_Database" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
