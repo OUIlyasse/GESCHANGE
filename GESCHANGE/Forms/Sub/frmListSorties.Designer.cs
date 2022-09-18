@@ -1,6 +1,6 @@
 ﻿namespace GESCHANGE.Forms.Sub
 {
-    partial class frmListEntrees
+    partial class frmListSorties
     {
         /// <summary>
         /// Required designer variable.
@@ -30,20 +30,23 @@
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblLigne = new System.Windows.Forms.Label();
-            this.dgvEntrees = new System.Windows.Forms.DataGridView();
+            this.dgvSorties = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Refference = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.piesNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEntrees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSorties)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,11 +56,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.lblLigne);
-            this.groupBox2.Controls.Add(this.dgvEntrees);
+            this.groupBox2.Controls.Add(this.dgvSorties);
             this.groupBox2.Location = new System.Drawing.Point(12, 101);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(840, 365);
-            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Affichage";
             // 
@@ -75,79 +78,39 @@
             this.lblLigne.Text = "ligne";
             this.lblLigne.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dgvEntrees
+            // dgvSorties
             // 
-            this.dgvEntrees.AllowUserToAddRows = false;
-            this.dgvEntrees.AllowUserToDeleteRows = false;
-            this.dgvEntrees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSorties.AllowUserToAddRows = false;
+            this.dgvSorties.AllowUserToDeleteRows = false;
+            this.dgvSorties.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvEntrees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvEntrees.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            this.dgvEntrees.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvEntrees.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvEntrees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEntrees.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSorties.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSorties.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.dgvSorties.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvSorties.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvSorties.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSorties.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Nom,
             this.Refference,
             this.Quantite,
             this.Note,
-            this.piesNom});
-            this.dgvEntrees.Location = new System.Drawing.Point(6, 43);
-            this.dgvEntrees.MultiSelect = false;
-            this.dgvEntrees.Name = "dgvEntrees";
-            this.dgvEntrees.ReadOnly = true;
-            this.dgvEntrees.RowHeadersWidth = 24;
-            this.dgvEntrees.RowTemplate.Height = 24;
-            this.dgvEntrees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEntrees.Size = new System.Drawing.Size(828, 316);
-            this.dgvEntrees.TabIndex = 6;
-            this.dgvEntrees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEntrees_CellDoubleClick);
-            this.dgvEntrees.Click += new System.EventHandler(this.dgvEntrees_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "entr_ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Nom
-            // 
-            this.Nom.DataPropertyName = "entr_Fournisseur";
-            this.Nom.HeaderText = "Fournisseur";
-            this.Nom.Name = "Nom";
-            this.Nom.ReadOnly = true;
-            // 
-            // Refference
-            // 
-            this.Refference.DataPropertyName = "entr_Date";
-            this.Refference.HeaderText = "Date";
-            this.Refference.Name = "Refference";
-            this.Refference.ReadOnly = true;
-            // 
-            // Quantite
-            // 
-            this.Quantite.DataPropertyName = "entr_Refference";
-            this.Quantite.HeaderText = "Refference";
-            this.Quantite.Name = "Quantite";
-            this.Quantite.ReadOnly = true;
-            // 
-            // Note
-            // 
-            this.Note.DataPropertyName = "entr_Quantite";
-            this.Note.HeaderText = "Quantite";
-            this.Note.Name = "Note";
-            this.Note.ReadOnly = true;
-            // 
-            // piesNom
-            // 
-            this.piesNom.DataPropertyName = "pies_Nom";
-            this.piesNom.HeaderText = "Pièce";
-            this.piesNom.Name = "piesNom";
-            this.piesNom.ReadOnly = true;
+            this.piesNom,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.dgvSorties.Location = new System.Drawing.Point(6, 43);
+            this.dgvSorties.MultiSelect = false;
+            this.dgvSorties.Name = "dgvSorties";
+            this.dgvSorties.ReadOnly = true;
+            this.dgvSorties.RowHeadersWidth = 24;
+            this.dgvSorties.RowTemplate.Height = 24;
+            this.dgvSorties.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSorties.Size = new System.Drawing.Size(828, 316);
+            this.dgvSorties.TabIndex = 6;
+            this.dgvSorties.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSorties_CellDoubleClick);
+            this.dgvSorties.Click += new System.EventHandler(this.dgvSorties_Click);
             // 
             // groupBox1
             // 
@@ -160,7 +123,7 @@
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(840, 70);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
             // btnDelete
@@ -206,9 +169,72 @@
             this.label1.Size = new System.Drawing.Size(87, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Recherche";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // frmListEntrees
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "srt_ID";
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Nom
+            // 
+            this.Nom.DataPropertyName = "srt_Date";
+            this.Nom.HeaderText = "Date";
+            this.Nom.Name = "Nom";
+            this.Nom.ReadOnly = true;
+            // 
+            // Refference
+            // 
+            this.Refference.DataPropertyName = "srt_Refference";
+            this.Refference.HeaderText = "Refference";
+            this.Refference.Name = "Refference";
+            this.Refference.ReadOnly = true;
+            // 
+            // Quantite
+            // 
+            this.Quantite.DataPropertyName = "srt_Quantite";
+            this.Quantite.HeaderText = "Quantite";
+            this.Quantite.Name = "Quantite";
+            this.Quantite.ReadOnly = true;
+            // 
+            // Note
+            // 
+            this.Note.DataPropertyName = "vl_Matricule";
+            this.Note.HeaderText = "Matricule";
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
+            // 
+            // piesNom
+            // 
+            this.piesNom.DataPropertyName = "vl_Genre";
+            this.piesNom.HeaderText = "Genre";
+            this.piesNom.Name = "piesNom";
+            this.piesNom.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "vl_Marque";
+            this.Column2.HeaderText = "Marque";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "pies_Nom";
+            this.Column3.HeaderText = "Pièce";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "pies_Refference";
+            this.Column4.HeaderText = "Refference";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // frmListSorties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -220,14 +246,14 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmListEntrees";
+            this.Name = "frmListSorties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Liste des entrées";
+            this.Text = "Liste des sorties";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmListEntrees_Load);
+            this.Load += new System.EventHandler(this.frmListSorties_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEntrees)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSorties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -237,18 +263,21 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.Label lblLigne;
+        public System.Windows.Forms.DataGridView dgvSorties;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.DataGridView dgvEntrees;
-        public System.Windows.Forms.Label lblLigne;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Refference;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantite;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
         private System.Windows.Forms.DataGridViewTextBoxColumn piesNom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

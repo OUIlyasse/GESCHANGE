@@ -46,7 +46,7 @@
             this.btnDelete.Location = new System.Drawing.Point(390, 260);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(132, 40);
-            this.btnDelete.TabIndex = 17;
+            this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "&Supprimer";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -56,7 +56,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(226, 260);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(132, 40);
-            this.btnUpdate.TabIndex = 16;
+            this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "&Modifier";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -66,7 +66,7 @@
             this.btnAdd.Location = new System.Drawing.Point(62, 260);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(132, 40);
-            this.btnAdd.TabIndex = 15;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "&Ajouter";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -76,14 +76,14 @@
             this.txtNom.Location = new System.Drawing.Point(183, 23);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(340, 27);
-            this.txtNom.TabIndex = 7;
+            this.txtNom.TabIndex = 0;
             // 
             // txtReff
             // 
             this.txtReff.Location = new System.Drawing.Point(183, 67);
             this.txtReff.Name = "txtReff";
             this.txtReff.Size = new System.Drawing.Size(340, 27);
-            this.txtReff.TabIndex = 9;
+            this.txtReff.TabIndex = 1;
             // 
             // txtQuantite
             // 
@@ -92,7 +92,7 @@
             this.txtQuantite.Name = "txtQuantite";
             this.txtQuantite.ReadOnly = true;
             this.txtQuantite.Size = new System.Drawing.Size(340, 27);
-            this.txtQuantite.TabIndex = 11;
+            this.txtQuantite.TabIndex = 2;
             // 
             // txtNote
             // 
@@ -100,7 +100,7 @@
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(340, 60);
-            this.txtNote.TabIndex = 13;
+            this.txtNote.TabIndex = 3;
             // 
             // label4
             // 

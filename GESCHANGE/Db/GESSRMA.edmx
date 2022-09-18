@@ -174,6 +174,7 @@
         <Function Name="MaxID_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Grades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxID_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxID_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Search_Pieces" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Search" Type="nvarchar(max)" Mode="In" />
@@ -188,11 +189,18 @@
           <Parameter Name="pies_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="Select_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_Sorties_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="srt_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="Select_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Vehicules_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="vl_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Select_Vehicules_By_MleVL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vl_Matricule" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Select_View_EP_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_View_SP_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_View_VL_Grade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Update_Entrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="entr_ID" Type="int" Mode="In" />
@@ -494,7 +502,36 @@
           </FunctionImport>
           <FunctionImport Name="MaxID_Entrees" ReturnType="Collection(Int32)" />
           <FunctionImport Name="Select_Entrees_By_ID" EntitySet="Entrees" ReturnType="Collection(GESSRMAModel.Entrees)">
-            <Parameter Name="entr_ID" Mode="In" Type="Int32" />
+          <Parameter Name="entr_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MaxID_Sorties" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="Select_Sorties_By_ID" EntitySet="Sorties" ReturnType="Collection(GESSRMAModel.Sorties)">
+          <Parameter Name="srt_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_View_SP_Sorties" ReturnType="Collection(GESSRMAModel.Select_View_SP_Sorties_Result)" />
+          <FunctionImport Name="Delete_Sorties">
+          <Parameter Name="srt_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Insert_Sorties">
+            <Parameter Name="srt_ID" Mode="In" Type="Int32" />
+            <Parameter Name="srt_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="srt_Refference" Mode="In" Type="String" />
+            <Parameter Name="srt_Quantite" Mode="In" Type="Int32" />
+            <Parameter Name="srt_Note" Mode="In" Type="String" />
+            <Parameter Name="vl_ID" Mode="In" Type="Int32" />
+            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Sorties">
+            <Parameter Name="srt_ID" Mode="In" Type="Int32" />
+            <Parameter Name="srt_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="srt_Refference" Mode="In" Type="String" />
+            <Parameter Name="srt_Quantite" Mode="In" Type="Int32" />
+            <Parameter Name="srt_Note" Mode="In" Type="String" />
+            <Parameter Name="vl_ID" Mode="In" Type="Int32" />
+            <Parameter Name="pies_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_Vehicules_By_MleVL" EntitySet="Vehicules" ReturnType="Collection(GESSRMAModel.Vehicules)">
+            <Parameter Name="vl_Matricule" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Pieces_Result">
@@ -546,6 +583,37 @@
           <Property Type="Int32" Name="entr_Quantite" Nullable="true" />
           <Property Type="String" Name="entr_Note" Nullable="true" />
           <Property Type="Int32" Name="pies_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Sorties_By_ID_Result">
+          <Property Type="Int32" Name="srt_ID" Nullable="false" />
+          <Property Type="DateTime" Name="srt_Date" Nullable="true" />
+          <Property Type="String" Name="srt_Refference" Nullable="true" />
+          <Property Type="Int32" Name="srt_Quantite" Nullable="true" />
+          <Property Type="String" Name="srt_Note" Nullable="true" />
+          <Property Type="Int32" Name="vl_ID" Nullable="true" />
+          <Property Type="Int32" Name="pies_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_View_SP_Sorties_Result">
+          <Property Type="Int32" Name="srt_ID" Nullable="false" />
+          <Property Type="DateTime" Name="srt_Date" Nullable="true" />
+          <Property Type="String" Name="srt_Refference" Nullable="true" />
+          <Property Type="Int32" Name="srt_Quantite" Nullable="true" />
+          <Property Type="String" Name="vl_Matricule" Nullable="true" />
+          <Property Type="String" Name="vl_Genre" Nullable="true" />
+          <Property Type="String" Name="vl_Marque" Nullable="true" />
+          <Property Type="String" Name="pies_Nom" Nullable="true" />
+          <Property Type="String" Name="pies_Refference" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Vehicules_By_MleVL_Result">
+          <Property Type="Int32" Name="vl_ID" Nullable="false" />
+          <Property Type="String" Name="vl_Matricule" Nullable="true" />
+          <Property Type="String" Name="vl_Genre" Nullable="true" />
+          <Property Type="String" Name="vl_Marque" Nullable="true" />
+          <Property Type="String" Name="cond_Nom" Nullable="true" />
+          <Property Type="String" Name="cond_Prenom" Nullable="true" />
+          <Property Type="Int32" Name="grd_ID" Nullable="true" />
+          <Property Type="String" Name="cond_Mle" Nullable="true" />
+          <Property Type="String" Name="cond_Unite" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -817,6 +885,29 @@
           <FunctionImportMapping FunctionImportName="Update_Entrees" FunctionName="GESSRMAModel.Store.Update_Entrees" />
           <FunctionImportMapping FunctionImportName="MaxID_Entrees" FunctionName="GESSRMAModel.Store.MaxID_Entrees" />
           <FunctionImportMapping FunctionImportName="Select_Entrees_By_ID" FunctionName="GESSRMAModel.Store.Select_Entrees_By_ID">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MaxID_Sorties" FunctionName="GESSRMAModel.Store.MaxID_Sorties" />
+          <FunctionImportMapping FunctionImportName="Select_Sorties_By_ID" FunctionName="GESSRMAModel.Store.Select_Sorties_By_ID">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_View_SP_Sorties" FunctionName="GESSRMAModel.Store.Select_View_SP_Sorties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GESSRMAModel.Select_View_SP_Sorties_Result">
+                <ScalarProperty Name="srt_ID" ColumnName="srt_ID" />
+                <ScalarProperty Name="srt_Date" ColumnName="srt_Date" />
+                <ScalarProperty Name="srt_Refference" ColumnName="srt_Refference" />
+                <ScalarProperty Name="srt_Quantite" ColumnName="srt_Quantite" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="pies_Refference" ColumnName="pies_Refference" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Delete_Sorties" FunctionName="GESSRMAModel.Store.Delete_Sorties" />
+          <FunctionImportMapping FunctionImportName="Insert_Sorties" FunctionName="GESSRMAModel.Store.Insert_Sorties" />
+          <FunctionImportMapping FunctionImportName="Update_Sorties" FunctionName="GESSRMAModel.Store.Update_Sorties" />
+          <FunctionImportMapping FunctionImportName="Select_Vehicules_By_MleVL" FunctionName="GESSRMAModel.Store.Select_Vehicules_By_MleVL">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

@@ -49,5 +49,11 @@ namespace GESCHANGE.Forms.Main
             frmListEntrees fLE = new frmListEntrees();
             OpenForm(fLE);
         }
+
+        private void menuSorties_Click(object sender, EventArgs e)
+        {
+            frmListSorties fLs = new frmListSorties();
+            OpenForm(fLs);
+        }
     }
 }

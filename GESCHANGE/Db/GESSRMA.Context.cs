@@ -392,5 +392,126 @@ namespace GESCHANGE.Db
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Entrees>("Select_Entrees_By_ID", mergeOption, entr_IDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> MaxID_Sorties()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MaxID_Sorties");
+        }
+    
+        public virtual ObjectResult<Sorties> Select_Sorties_By_ID(Nullable<int> srt_ID)
+        {
+            var srt_IDParameter = srt_ID.HasValue ?
+                new ObjectParameter("srt_ID", srt_ID) :
+                new ObjectParameter("srt_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sorties>("Select_Sorties_By_ID", srt_IDParameter);
+        }
+    
+        public virtual ObjectResult<Sorties> Select_Sorties_By_ID(Nullable<int> srt_ID, MergeOption mergeOption)
+        {
+            var srt_IDParameter = srt_ID.HasValue ?
+                new ObjectParameter("srt_ID", srt_ID) :
+                new ObjectParameter("srt_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sorties>("Select_Sorties_By_ID", mergeOption, srt_IDParameter);
+        }
+    
+        public virtual ObjectResult<Select_View_SP_Sorties_Result> Select_View_SP_Sorties()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_View_SP_Sorties_Result>("Select_View_SP_Sorties");
+        }
+    
+        public virtual int Delete_Sorties(Nullable<int> srt_ID)
+        {
+            var srt_IDParameter = srt_ID.HasValue ?
+                new ObjectParameter("srt_ID", srt_ID) :
+                new ObjectParameter("srt_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Delete_Sorties", srt_IDParameter);
+        }
+    
+        public virtual int Insert_Sorties(Nullable<int> srt_ID, Nullable<System.DateTime> srt_Date, string srt_Refference, Nullable<int> srt_Quantite, string srt_Note, Nullable<int> vl_ID, Nullable<int> pies_ID)
+        {
+            var srt_IDParameter = srt_ID.HasValue ?
+                new ObjectParameter("srt_ID", srt_ID) :
+                new ObjectParameter("srt_ID", typeof(int));
+    
+            var srt_DateParameter = srt_Date.HasValue ?
+                new ObjectParameter("srt_Date", srt_Date) :
+                new ObjectParameter("srt_Date", typeof(System.DateTime));
+    
+            var srt_RefferenceParameter = srt_Refference != null ?
+                new ObjectParameter("srt_Refference", srt_Refference) :
+                new ObjectParameter("srt_Refference", typeof(string));
+    
+            var srt_QuantiteParameter = srt_Quantite.HasValue ?
+                new ObjectParameter("srt_Quantite", srt_Quantite) :
+                new ObjectParameter("srt_Quantite", typeof(int));
+    
+            var srt_NoteParameter = srt_Note != null ?
+                new ObjectParameter("srt_Note", srt_Note) :
+                new ObjectParameter("srt_Note", typeof(string));
+    
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            var pies_IDParameter = pies_ID.HasValue ?
+                new ObjectParameter("pies_ID", pies_ID) :
+                new ObjectParameter("pies_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Insert_Sorties", srt_IDParameter, srt_DateParameter, srt_RefferenceParameter, srt_QuantiteParameter, srt_NoteParameter, vl_IDParameter, pies_IDParameter);
+        }
+    
+        public virtual int Update_Sorties(Nullable<int> srt_ID, Nullable<System.DateTime> srt_Date, string srt_Refference, Nullable<int> srt_Quantite, string srt_Note, Nullable<int> vl_ID, Nullable<int> pies_ID)
+        {
+            var srt_IDParameter = srt_ID.HasValue ?
+                new ObjectParameter("srt_ID", srt_ID) :
+                new ObjectParameter("srt_ID", typeof(int));
+    
+            var srt_DateParameter = srt_Date.HasValue ?
+                new ObjectParameter("srt_Date", srt_Date) :
+                new ObjectParameter("srt_Date", typeof(System.DateTime));
+    
+            var srt_RefferenceParameter = srt_Refference != null ?
+                new ObjectParameter("srt_Refference", srt_Refference) :
+                new ObjectParameter("srt_Refference", typeof(string));
+    
+            var srt_QuantiteParameter = srt_Quantite.HasValue ?
+                new ObjectParameter("srt_Quantite", srt_Quantite) :
+                new ObjectParameter("srt_Quantite", typeof(int));
+    
+            var srt_NoteParameter = srt_Note != null ?
+                new ObjectParameter("srt_Note", srt_Note) :
+                new ObjectParameter("srt_Note", typeof(string));
+    
+            var vl_IDParameter = vl_ID.HasValue ?
+                new ObjectParameter("vl_ID", vl_ID) :
+                new ObjectParameter("vl_ID", typeof(int));
+    
+            var pies_IDParameter = pies_ID.HasValue ?
+                new ObjectParameter("pies_ID", pies_ID) :
+                new ObjectParameter("pies_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Sorties", srt_IDParameter, srt_DateParameter, srt_RefferenceParameter, srt_QuantiteParameter, srt_NoteParameter, vl_IDParameter, pies_IDParameter);
+        }
+    
+        public virtual ObjectResult<Vehicules> Select_Vehicules_By_MleVL(string vl_Matricule)
+        {
+            var vl_MatriculeParameter = vl_Matricule != null ?
+                new ObjectParameter("vl_Matricule", vl_Matricule) :
+                new ObjectParameter("vl_Matricule", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Vehicules>("Select_Vehicules_By_MleVL", vl_MatriculeParameter);
+        }
+    
+        public virtual ObjectResult<Vehicules> Select_Vehicules_By_MleVL(string vl_Matricule, MergeOption mergeOption)
+        {
+            var vl_MatriculeParameter = vl_Matricule != null ?
+                new ObjectParameter("vl_Matricule", vl_Matricule) :
+                new ObjectParameter("vl_Matricule", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Vehicules>("Select_Vehicules_By_MleVL", mergeOption, vl_MatriculeParameter);
+        }
     }
 }

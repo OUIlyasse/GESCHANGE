@@ -89,10 +89,19 @@
     <Compile Include="Db\Select_Pieces_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Db\Select_Sorties_By_ID_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Select_Vehicules_By_MleVL_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Db\Select_Vehicules_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Select_View_EP_Entrees_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\Select_View_SP_Sorties_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Select_View_VL_Grade_Result.cs">
@@ -131,6 +140,12 @@
     <Compile Include="Forms\Sub\frmListPieces.Designer.cs">
       <DependentUpon>frmListPieces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Sub\frmListSorties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub\frmListSorties.Designer.cs">
+      <DependentUpon>frmListSorties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Sub\frmListVehicules.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +157,12 @@
     </Compile>
     <Compile Include="Forms\Sub\frmPieces.Designer.cs">
       <DependentUpon>frmPieces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Sub\frmSNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Sub\frmSNew.Designer.cs">
+      <DependentUpon>frmSNew.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Sub\frmVehicules.cs">
       <SubType>Form</SubType>
@@ -165,11 +186,17 @@
     <EmbeddedResource Include="Forms\Sub\frmListPieces.resx">
       <DependentUpon>frmListPieces.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmListSorties.resx">
+      <DependentUpon>frmListSorties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sub\frmListVehicules.resx">
       <DependentUpon>frmListVehicules.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sub\frmPieces.resx">
       <DependentUpon>frmPieces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Sub\frmSNew.resx">
+      <DependentUpon>frmSNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Sub\frmVehicules.resx">
       <DependentUpon>frmVehicules.cs</DependentUpon>

@@ -117,7 +117,7 @@
             this.txtPrenom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPrenom.Name = "txtPrenom";
             this.txtPrenom.Size = new System.Drawing.Size(160, 27);
-            this.txtPrenom.TabIndex = 30;
+            this.txtPrenom.TabIndex = 1;
             // 
             // txtNom
             // 
@@ -176,7 +176,7 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Size = new System.Drawing.Size(528, 193);
-            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "&Conducteur";
             // 
@@ -261,7 +261,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Size = new System.Drawing.Size(528, 202);
-            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "&Véhicule";
             // 
@@ -272,7 +272,7 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(137, 54);
-            this.btnUpdate.TabIndex = 8;
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "&Modifier";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -284,7 +284,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(137, 54);
-            this.btnAdd.TabIndex = 7;
+            this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "&Ajouter";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -296,7 +296,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(137, 54);
-            this.btnDelete.TabIndex = 9;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "&Supprimer";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);

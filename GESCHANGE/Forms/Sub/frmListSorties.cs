@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace GESCHANGE.Forms.Sub
 {
-    public partial class frmListEntrees : Form
+    public partial class frmListSorties : Form
     {
         #region Variables
 
@@ -24,37 +24,50 @@ namespace GESCHANGE.Forms.Sub
 
         public void getData()
         {
-            dgvEntrees.DataSource = db.Select_View_EP_Entrees();
-            lblLigne.Text = string.Format("Ligne {0}", dgvEntrees.RowCount);
+            dgvSorties.DataSource = db.Select_View_SP_Sorties();
+            lblLigne.Text = string.Format("Ligne {0}", dgvSorties.RowCount);
         }
 
         #endregion Codes
 
-        public frmListEntrees()
+        public frmListSorties()
         {
             InitializeComponent();
         }
 
-        private void frmListEntrees_Load(object sender, EventArgs e)
+        private void frmListSorties_Load(object sender, EventArgs e)
         {
             getData();
             btnDelete.Enabled = false;
         }
 
-        private void dgvEntrees_Click(object sender, EventArgs e)
+        private void dgvSorties_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvEntrees.SelectedCells[0].OwningRow.Index < 0)
-                btnDelete.Enabled = false;
-            else
+            if (e.RowIndex >= 0)
             {
-                try
+                DataGridViewRow row = dgvSorties.Rows[e.RowIndex];
+                id = row.Cells["Column1"].Value.ToString();
+                Sorties rs = db.Select_Sorties_By_ID(int.Parse(id)).FirstOrDefault();
+                frmSNew f = new frmSNew(this, (DateTime)rs.srt_Date, rs.srt_Refference, int.Parse(rs.srt_Quantite.ToString()), rs.srt_Note, int.Parse(rs.vl_ID.ToString()), int.Parse(rs.pies_ID.ToString()));
+                f.Text = "Modifier une Opération de sortie";
+                f.ShowDialog();
+            }
+        }
+
+        private void dgvSorties_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvSorties.SelectedCells[0].OwningRow.Index < 0)
+                    btnDelete.Enabled = false;
+                else
                 {
                     btnDelete.Enabled = true;
-                    DataGridViewRow row = dgvEntrees.CurrentRow;
+                    DataGridViewRow row = dgvSorties.CurrentRow;
                     id = row.Cells["Column1"].Value.ToString();
                 }
-                catch (Exception) { }
             }
+            catch (Exception) { }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -64,7 +77,7 @@ namespace GESCHANGE.Forms.Sub
                 DialogResult re = MessageBox.Show("Voulez-vous supprimer cette Opération", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (re == DialogResult.Yes)
                 {
-                    db.Delete_Entrees(int.Parse(id));
+                    db.Delete_Sorties(int.Parse(id));
                     db.SaveChanges();
                     getData();
                 }
@@ -77,26 +90,9 @@ namespace GESCHANGE.Forms.Sub
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            frmENew f = new frmENew(this);
-            f.Text = "Nouvelle opération d'entrer";
+            frmSNew f = new frmSNew(this);
+            f.Text = "Nouvelle opération de sortie";
             f.ShowDialog();
-        }
-
-        private void dgvEntrees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvEntrees.Rows[e.RowIndex];
-                id = row.Cells["Column1"].Value.ToString();
-                Entrees rs = db.Select_Entrees_By_ID(int.Parse(id)).FirstOrDefault();
-                frmENew f = new frmENew(this, (DateTime)rs.entr_Date, rs.entr_Fournisseur, rs.entr_Refference, (int)rs.entr_Quantite, rs.entr_Note, rs.Pieces.pies_Nom);
-                f.Text = "Modifier une Opération d'entrer";
-                f.ShowDialog();
-            }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
         }
     }
 }

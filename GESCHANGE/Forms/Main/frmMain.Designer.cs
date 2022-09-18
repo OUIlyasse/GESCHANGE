@@ -90,6 +90,7 @@
             this.menuSorties.Name = "menuSorties";
             this.menuSorties.Size = new System.Drawing.Size(181, 26);
             this.menuSorties.Text = "&Sorties";
+            this.menuSorties.Click += new System.EventHandler(this.menuSorties_Click);
             // 
             // paramètresToolStripMenuItem
             // 
