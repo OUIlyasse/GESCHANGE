@@ -240,6 +240,9 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
         <Function Name="Select_Sorties_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="srt_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Select_Users_Where" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_Name" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Select_Vehicules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Vehicules_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="vl_ID" Type="int" Mode="In" />
@@ -631,6 +634,9 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
             <Parameter Name="pies_Nom" Mode="In" Type="String" />
             <Parameter Name="pies_Quantite" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Select_Users_Where" EntitySet="Users" ReturnType="Collection(GESSRMAModel.Users)">
+            <Parameter Name="user_Name" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Pieces_Result">
           <Property Type="Int32" Name="pies_ID" Nullable="false" />
@@ -758,6 +764,11 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
           <Property Type="String" Name="pies_Refference" Nullable="true" />
           <Property Type="Int32" Name="pies_Quantite" Nullable="true" />
           <Property Type="String" Name="pies_Note" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_Users_Where_Result">
+          <Property Type="Int32" Name="user_ID" Nullable="false" />
+          <Property Type="String" Name="user_Name" Nullable="false" />
+          <Property Type="String" Name="user_Password" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1098,6 +1109,8 @@ avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé pri
           <FunctionImportMapping FunctionImportName="Select_Pieces_By_Name" FunctionName="GESSRMAModel.Store.Select_Pieces_By_Name">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Update_Pieces_Quantite_By_Name" FunctionName="GESSRMAModel.Store.Update_Pieces_Quantite_By_Name" />
+          <FunctionImportMapping FunctionImportName="Select_Users_Where" FunctionName="GESSRMAModel.Store.Select_Users_Where">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

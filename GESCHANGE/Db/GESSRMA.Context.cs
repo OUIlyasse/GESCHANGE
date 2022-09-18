@@ -547,5 +547,23 @@ namespace GESCHANGE.Db
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Pieces_Quantite_By_Name", pies_NomParameter, pies_QuantiteParameter);
         }
+    
+        public virtual ObjectResult<Users> Select_Users_Where(string user_Name)
+        {
+            var user_NameParameter = user_Name != null ?
+                new ObjectParameter("user_Name", user_Name) :
+                new ObjectParameter("user_Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Users>("Select_Users_Where", user_NameParameter);
+        }
+    
+        public virtual ObjectResult<Users> Select_Users_Where(string user_Name, MergeOption mergeOption)
+        {
+            var user_NameParameter = user_Name != null ?
+                new ObjectParameter("user_Name", user_Name) :
+                new ObjectParameter("user_Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Users>("Select_Users_Where", mergeOption, user_NameParameter);
+        }
     }
 }

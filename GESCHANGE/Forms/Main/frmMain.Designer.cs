@@ -67,28 +67,28 @@
             // menuPieces
             // 
             this.menuPieces.Name = "menuPieces";
-            this.menuPieces.Size = new System.Drawing.Size(181, 26);
+            this.menuPieces.Size = new System.Drawing.Size(145, 26);
             this.menuPieces.Text = "&Pièces";
             this.menuPieces.Click += new System.EventHandler(this.menuPieces_Click);
             // 
             // menuVehicules
             // 
             this.menuVehicules.Name = "menuVehicules";
-            this.menuVehicules.Size = new System.Drawing.Size(181, 26);
+            this.menuVehicules.Size = new System.Drawing.Size(145, 26);
             this.menuVehicules.Text = "&Véhicules";
             this.menuVehicules.Click += new System.EventHandler(this.menuVehicules_Click);
             // 
             // menuEntree
             // 
             this.menuEntree.Name = "menuEntree";
-            this.menuEntree.Size = new System.Drawing.Size(181, 26);
+            this.menuEntree.Size = new System.Drawing.Size(145, 26);
             this.menuEntree.Text = "&Entrées";
             this.menuEntree.Click += new System.EventHandler(this.menuEntree_Click);
             // 
             // menuSorties
             // 
             this.menuSorties.Name = "menuSorties";
-            this.menuSorties.Size = new System.Drawing.Size(181, 26);
+            this.menuSorties.Size = new System.Drawing.Size(145, 26);
             this.menuSorties.Text = "&Sorties";
             this.menuSorties.Click += new System.EventHandler(this.menuSorties_Click);
             // 
@@ -135,6 +135,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SRMA";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

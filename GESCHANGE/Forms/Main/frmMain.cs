@@ -55,5 +55,10 @@ namespace GESCHANGE.Forms.Main
             frmListSorties fLs = new frmListSorties();
             OpenForm(fLs);
         }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
