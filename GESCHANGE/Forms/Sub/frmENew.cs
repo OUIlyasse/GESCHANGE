@@ -64,6 +64,9 @@ namespace GESCHANGE.Forms.Sub
                 else
                 {
                     db.Insert_Entrees(maxId, txtFournisseur.Text.Trim().ToUpper(), dtOperation.Value, txtReff.Text.Trim().ToUpper(), int.Parse(txtQuantite.Text), txtNote.Text.Trim(), int.Parse(cmbxPieces.SelectedValue.ToString()));
+                    Pieces rs = db.Select_Pieces_By_Name(cmbxPieces.Text).FirstOrDefault();
+                    var qte = int.Parse(rs.pies_Quantite.ToString()) + int.Parse(txtQuantite.Text);
+                    db.Update_Pieces_Quantite_By_Name(cmbxPieces.Text, qte);
                     db.SaveChanges();
                     return true;
                 }

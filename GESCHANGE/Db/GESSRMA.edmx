@@ -68,6 +68,51 @@
           <Property Name="cond_Mle" Type="nvarchar(max)" />
           <Property Name="cond_Unite" Type="nvarchar(max)" />
         </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'GESSRMA.dbo.View_EP_Entrees' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="View_EP_Entrees">
+          <Key>
+            <PropertyRef Name="entr_ID" />
+          </Key>
+          <Property Name="entr_ID" Type="int" Nullable="false" />
+          <Property Name="entr_Fournisseur" Type="nvarchar(max)" />
+          <Property Name="entr_Date" Type="date" />
+          <Property Name="entr_Refference" Type="nvarchar(max)" />
+          <Property Name="entr_Quantite" Type="int" />
+          <Property Name="pies_Nom" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'GESSRMA.dbo.View_SP_Sorties' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="View_SP_Sorties">
+          <Key>
+            <PropertyRef Name="srt_ID" />
+          </Key>
+          <Property Name="srt_ID" Type="int" Nullable="false" />
+          <Property Name="srt_Date" Type="date" />
+          <Property Name="srt_Refference" Type="nvarchar(max)" />
+          <Property Name="srt_Quantite" Type="int" />
+          <Property Name="vl_Matricule" Type="nvarchar(max)" />
+          <Property Name="vl_Genre" Type="nvarchar(max)" />
+          <Property Name="vl_Marque" Type="nvarchar(max)" />
+          <Property Name="pies_Nom" Type="nvarchar(max)" />
+          <Property Name="pies_Refference" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'GESSRMA.dbo.View_VL_Grade' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="View_VL_Grade">
+          <Key>
+            <PropertyRef Name="vl_ID" />
+          </Key>
+          <Property Name="vl_ID" Type="int" Nullable="false" />
+          <Property Name="vl_Matricule" Type="nvarchar(max)" />
+          <Property Name="vl_Genre" Type="nvarchar(max)" />
+          <Property Name="vl_Marque" Type="nvarchar(max)" />
+          <Property Name="cond_Nom" Type="nvarchar(max)" />
+          <Property Name="cond_Prenom" Type="nvarchar(max)" />
+          <Property Name="grd_Libelle" Type="nvarchar(max)" />
+          <Property Name="cond_Mle" Type="nvarchar(max)" />
+          <Property Name="cond_Unite" Type="nvarchar(max)" />
+        </EntityType>
         <Association Name="FK_Entrees_Pieces">
           <End Role="Pieces" Type="Self.Pieces" Multiplicity="0..1" />
           <End Role="Entrees" Type="Self.Entrees" Multiplicity="*" />
@@ -188,6 +233,9 @@
         <Function Name="Select_Pieces_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pies_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Select_Pieces_By_Name" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pies_Nom" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="Select_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Select_Sorties_By_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="srt_ID" Type="int" Mode="In" />
@@ -222,6 +270,10 @@
           <Parameter Name="pies_Quantite" Type="int" Mode="In" />
           <Parameter Name="pies_Note" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="Update_Pieces_Quantite_By_Name" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pies_Nom" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="pies_Quantite" Type="int" Mode="In" />
+        </Function>
         <Function Name="Update_Sorties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="srt_ID" Type="int" Mode="In" />
           <Parameter Name="srt_Date" Type="date" Mode="In" />
@@ -249,6 +301,42 @@
           <EntitySet Name="Sorties" EntityType="Self.Sorties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicules" EntityType="Self.Vehicules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_EP_Entrees" EntityType="Self.View_EP_Entrees" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_EP_Entrees].[entr_ID] AS [entr_ID], 
+    [View_EP_Entrees].[entr_Fournisseur] AS [entr_Fournisseur], 
+    [View_EP_Entrees].[entr_Date] AS [entr_Date], 
+    [View_EP_Entrees].[entr_Refference] AS [entr_Refference], 
+    [View_EP_Entrees].[entr_Quantite] AS [entr_Quantite], 
+    [View_EP_Entrees].[pies_Nom] AS [pies_Nom]
+    FROM [dbo].[View_EP_Entrees] AS [View_EP_Entrees]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_SP_Sorties" EntityType="Self.View_SP_Sorties" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_SP_Sorties].[srt_ID] AS [srt_ID], 
+    [View_SP_Sorties].[srt_Date] AS [srt_Date], 
+    [View_SP_Sorties].[srt_Refference] AS [srt_Refference], 
+    [View_SP_Sorties].[srt_Quantite] AS [srt_Quantite], 
+    [View_SP_Sorties].[vl_Matricule] AS [vl_Matricule], 
+    [View_SP_Sorties].[vl_Genre] AS [vl_Genre], 
+    [View_SP_Sorties].[vl_Marque] AS [vl_Marque], 
+    [View_SP_Sorties].[pies_Nom] AS [pies_Nom], 
+    [View_SP_Sorties].[pies_Refference] AS [pies_Refference]
+    FROM [dbo].[View_SP_Sorties] AS [View_SP_Sorties]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_VL_Grade" EntityType="Self.View_VL_Grade" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_VL_Grade].[vl_ID] AS [vl_ID], 
+    [View_VL_Grade].[vl_Matricule] AS [vl_Matricule], 
+    [View_VL_Grade].[vl_Genre] AS [vl_Genre], 
+    [View_VL_Grade].[vl_Marque] AS [vl_Marque], 
+    [View_VL_Grade].[cond_Nom] AS [cond_Nom], 
+    [View_VL_Grade].[cond_Prenom] AS [cond_Prenom], 
+    [View_VL_Grade].[grd_Libelle] AS [grd_Libelle], 
+    [View_VL_Grade].[cond_Mle] AS [cond_Mle], 
+    [View_VL_Grade].[cond_Unite] AS [cond_Unite]
+    FROM [dbo].[View_VL_Grade] AS [View_VL_Grade]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Entrees_Pieces" Association="Self.FK_Entrees_Pieces">
             <End Role="Pieces" EntitySet="Pieces" />
             <End Role="Entrees" EntitySet="Entrees" />
@@ -531,7 +619,17 @@
             <Parameter Name="pies_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Select_Vehicules_By_MleVL" EntitySet="Vehicules" ReturnType="Collection(GESSRMAModel.Vehicules)">
-            <Parameter Name="vl_Matricule" Mode="In" Type="String" />
+          <Parameter Name="vl_Matricule" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="View_EP_Entrees" EntityType="GESSRMAModel.View_EP_Entrees" />
+          <EntitySet Name="View_SP_Sorties" EntityType="GESSRMAModel.View_SP_Sorties" />
+          <EntitySet Name="View_VL_Grade" EntityType="GESSRMAModel.View_VL_Grade" />
+          <FunctionImport Name="Select_Pieces_By_Name" EntitySet="Pieces" ReturnType="Collection(GESSRMAModel.Pieces)">
+          <Parameter Name="pies_Nom" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Update_Pieces_Quantite_By_Name">
+            <Parameter Name="pies_Nom" Mode="In" Type="String" />
+            <Parameter Name="pies_Quantite" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_Pieces_Result">
@@ -614,6 +712,52 @@
           <Property Type="Int32" Name="grd_ID" Nullable="true" />
           <Property Type="String" Name="cond_Mle" Nullable="true" />
           <Property Type="String" Name="cond_Unite" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="View_EP_Entrees">
+          <Key>
+            <PropertyRef Name="entr_ID" />
+          </Key>
+          <Property Name="entr_ID" Type="Int32" Nullable="false" />
+          <Property Name="entr_Fournisseur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="entr_Date" Type="DateTime" Precision="0" />
+          <Property Name="entr_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="entr_Quantite" Type="Int32" />
+          <Property Name="pies_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_SP_Sorties">
+          <Key>
+            <PropertyRef Name="srt_ID" />
+          </Key>
+          <Property Name="srt_ID" Type="Int32" Nullable="false" />
+          <Property Name="srt_Date" Type="DateTime" Precision="0" />
+          <Property Name="srt_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="srt_Quantite" Type="Int32" />
+          <Property Name="vl_Matricule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_Genre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_Marque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pies_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pies_Refference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_VL_Grade">
+          <Key>
+            <PropertyRef Name="vl_ID" />
+          </Key>
+          <Property Name="vl_ID" Type="Int32" Nullable="false" />
+          <Property Name="vl_Matricule" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_Genre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vl_Marque" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="grd_Libelle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Mle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cond_Unite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="Select_Pieces_By_Name_Result">
+          <Property Type="Int32" Name="pies_ID" Nullable="false" />
+          <Property Type="String" Name="pies_Nom" Nullable="true" />
+          <Property Type="String" Name="pies_Refference" Nullable="true" />
+          <Property Type="Int32" Name="pies_Quantite" Nullable="true" />
+          <Property Type="String" Name="pies_Note" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -909,6 +1053,51 @@
           <FunctionImportMapping FunctionImportName="Update_Sorties" FunctionName="GESSRMAModel.Store.Update_Sorties" />
           <FunctionImportMapping FunctionImportName="Select_Vehicules_By_MleVL" FunctionName="GESSRMAModel.Store.Select_Vehicules_By_MleVL">
           </FunctionImportMapping>
+          <EntitySetMapping Name="View_EP_Entrees">
+            <EntityTypeMapping TypeName="GESSRMAModel.View_EP_Entrees">
+              <MappingFragment StoreEntitySet="View_EP_Entrees">
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="entr_Quantite" ColumnName="entr_Quantite" />
+                <ScalarProperty Name="entr_Refference" ColumnName="entr_Refference" />
+                <ScalarProperty Name="entr_Date" ColumnName="entr_Date" />
+                <ScalarProperty Name="entr_Fournisseur" ColumnName="entr_Fournisseur" />
+                <ScalarProperty Name="entr_ID" ColumnName="entr_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_SP_Sorties">
+            <EntityTypeMapping TypeName="GESSRMAModel.View_SP_Sorties">
+              <MappingFragment StoreEntitySet="View_SP_Sorties">
+                <ScalarProperty Name="pies_Refference" ColumnName="pies_Refference" />
+                <ScalarProperty Name="pies_Nom" ColumnName="pies_Nom" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="srt_Quantite" ColumnName="srt_Quantite" />
+                <ScalarProperty Name="srt_Refference" ColumnName="srt_Refference" />
+                <ScalarProperty Name="srt_Date" ColumnName="srt_Date" />
+                <ScalarProperty Name="srt_ID" ColumnName="srt_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_VL_Grade">
+            <EntityTypeMapping TypeName="GESSRMAModel.View_VL_Grade">
+              <MappingFragment StoreEntitySet="View_VL_Grade">
+                <ScalarProperty Name="cond_Unite" ColumnName="cond_Unite" />
+                <ScalarProperty Name="cond_Mle" ColumnName="cond_Mle" />
+                <ScalarProperty Name="grd_Libelle" ColumnName="grd_Libelle" />
+                <ScalarProperty Name="cond_Prenom" ColumnName="cond_Prenom" />
+                <ScalarProperty Name="cond_Nom" ColumnName="cond_Nom" />
+                <ScalarProperty Name="vl_Marque" ColumnName="vl_Marque" />
+                <ScalarProperty Name="vl_Genre" ColumnName="vl_Genre" />
+                <ScalarProperty Name="vl_Matricule" ColumnName="vl_Matricule" />
+                <ScalarProperty Name="vl_ID" ColumnName="vl_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Select_Pieces_By_Name" FunctionName="GESSRMAModel.Store.Select_Pieces_By_Name">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Update_Pieces_Quantite_By_Name" FunctionName="GESSRMAModel.Store.Update_Pieces_Quantite_By_Name" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

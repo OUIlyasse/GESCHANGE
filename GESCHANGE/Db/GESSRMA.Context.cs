@@ -33,6 +33,9 @@ namespace GESCHANGE.Db
         public virtual DbSet<Sorties> Sorties { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Vehicules> Vehicules { get; set; }
+        public virtual DbSet<View_EP_Entrees> View_EP_Entrees { get; set; }
+        public virtual DbSet<View_SP_Sorties> View_SP_Sorties { get; set; }
+        public virtual DbSet<View_VL_Grade> View_VL_Grade { get; set; }
     
         public virtual ObjectResult<Select_Pieces_Result> Select_Pieces()
         {
@@ -512,6 +515,37 @@ namespace GESCHANGE.Db
                 new ObjectParameter("vl_Matricule", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Vehicules>("Select_Vehicules_By_MleVL", mergeOption, vl_MatriculeParameter);
+        }
+    
+        public virtual ObjectResult<Pieces> Select_Pieces_By_Name(string pies_Nom)
+        {
+            var pies_NomParameter = pies_Nom != null ?
+                new ObjectParameter("pies_Nom", pies_Nom) :
+                new ObjectParameter("pies_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pieces>("Select_Pieces_By_Name", pies_NomParameter);
+        }
+    
+        public virtual ObjectResult<Pieces> Select_Pieces_By_Name(string pies_Nom, MergeOption mergeOption)
+        {
+            var pies_NomParameter = pies_Nom != null ?
+                new ObjectParameter("pies_Nom", pies_Nom) :
+                new ObjectParameter("pies_Nom", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pieces>("Select_Pieces_By_Name", mergeOption, pies_NomParameter);
+        }
+    
+        public virtual int Update_Pieces_Quantite_By_Name(string pies_Nom, Nullable<int> pies_Quantite)
+        {
+            var pies_NomParameter = pies_Nom != null ?
+                new ObjectParameter("pies_Nom", pies_Nom) :
+                new ObjectParameter("pies_Nom", typeof(string));
+    
+            var pies_QuantiteParameter = pies_Quantite.HasValue ?
+                new ObjectParameter("pies_Quantite", pies_Quantite) :
+                new ObjectParameter("pies_Quantite", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Pieces_Quantite_By_Name", pies_NomParameter, pies_QuantiteParameter);
         }
     }
 }

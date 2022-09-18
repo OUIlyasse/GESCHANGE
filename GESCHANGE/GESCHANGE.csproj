@@ -86,6 +86,9 @@
     <Compile Include="Db\Select_Grades_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Db\Select_Pieces_By_Name_Result.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Db\Select_Pieces_Result.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
@@ -114,6 +117,15 @@
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Db\Vehicules.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\View_EP_Entrees.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\View_SP_Sorties.cs">
+      <DependentUpon>GESSRMA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\View_VL_Grade.cs">
       <DependentUpon>GESSRMA.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\Main\frmMain.cs">

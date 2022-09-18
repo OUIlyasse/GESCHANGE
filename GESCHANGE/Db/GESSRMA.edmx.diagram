@@ -15,6 +15,9 @@
         <AssociationConnector Association="GESSRMAModel.FK_Vehicule_Grade" ManuallyRouted="false" />
         <AssociationConnector Association="GESSRMAModel.FK_Sorties_Pieces" ManuallyRouted="false" />
         <AssociationConnector Association="GESSRMAModel.FK_Sorties_Vehicules" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GESSRMAModel.View_EP_Entrees" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GESSRMAModel.View_SP_Sorties" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GESSRMAModel.View_VL_Grade" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

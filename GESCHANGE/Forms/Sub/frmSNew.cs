@@ -18,6 +18,7 @@ namespace GESCHANGE.Forms.Sub
 
         private GESSRMAEntities db = new GESSRMAEntities();
         private frmListSorties fls;
+        private int PsQuantite = 0;
 
         #endregion Variables
 
@@ -28,7 +29,7 @@ namespace GESCHANGE.Forms.Sub
             dtOperation.Value = DateTime.Now;
             txtReff.Text = string.Empty;
             cmbxPieces.Text = string.Empty;
-            txtQuantite.Text = string.Empty;
+            numQuantite.Text = string.Empty;
             cmbxVL.Text = string.Empty;
             lblInfoVL.Text = string.Empty;
             txtNote.Text = string.Empty;
@@ -56,15 +57,18 @@ namespace GESCHANGE.Forms.Sub
             {
                 int? maxId = db.MaxID_Sorties().SingleOrDefault();
                 string message;
-                var isVerify = VerifyText(out message, txtReff, txtReff, txtQuantite);
-                if (isVerify && string.IsNullOrEmpty(dtOperation.Text) && string.IsNullOrEmpty(cmbxPieces.Text) && string.IsNullOrEmpty(cmbxVL.Text))
+                var isVerify = VerifyText(out message, txtReff, txtReff);
+                if (isVerify && string.IsNullOrEmpty(dtOperation.Text) && string.IsNullOrEmpty(cmbxPieces.Text) && string.IsNullOrEmpty(cmbxVL.Text) && string.IsNullOrEmpty(numQuantite.ToString()))
                 {
                     MessageBox.Show(message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 else
                 {
-                    db.Insert_Sorties(maxId, dtOperation.Value, txtReff.Text.Trim().ToUpper(), int.Parse(txtQuantite.Text), txtNote.Text.Trim(), int.Parse(cmbxVL.SelectedValue.ToString()), int.Parse(cmbxPieces.SelectedValue.ToString()));
+                    db.Insert_Sorties(maxId, dtOperation.Value, txtReff.Text.Trim().ToUpper(), int.Parse(numQuantite.Text), txtNote.Text.Trim(), int.Parse(cmbxVL.SelectedValue.ToString()), int.Parse(cmbxPieces.SelectedValue.ToString()));
+                    Pieces rs = db.Select_Pieces_By_Name(cmbxPieces.Text).FirstOrDefault();
+                    var qte = int.Parse(rs.pies_Quantite.ToString()) - int.Parse(numQuantite.Value.ToString());
+                    db.Update_Pieces_Quantite_By_Name(cmbxPieces.Text, qte);
                     db.SaveChanges();
                     return true;
                 }
@@ -103,15 +107,15 @@ namespace GESCHANGE.Forms.Sub
             try
             {
                 string message;
-                var isVerify = VerifyText(out message, txtReff, txtReff, txtQuantite);
-                if (isVerify && string.IsNullOrEmpty(dtOperation.Text) && string.IsNullOrEmpty(cmbxPieces.Text) && string.IsNullOrEmpty(cmbxVL.Text))
+                var isVerify = VerifyText(out message, txtReff, txtReff);
+                if (isVerify && string.IsNullOrEmpty(dtOperation.Text) && string.IsNullOrEmpty(cmbxPieces.Text) && string.IsNullOrEmpty(cmbxVL.Text) && string.IsNullOrEmpty(numQuantite.ToString()))
                 {
                     MessageBox.Show(message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 else
                 {
-                    db.Update_Sorties(int.Parse(fls.id.ToString()), dtOperation.Value, txtReff.Text.Trim().ToUpper(), int.Parse(txtQuantite.Text), txtNote.Text.Trim(), int.Parse(cmbxVL.SelectedValue.ToString()), int.Parse(cmbxPieces.SelectedValue.ToString()));
+                    db.Update_Sorties(int.Parse(fls.id.ToString()), dtOperation.Value, txtReff.Text.Trim().ToUpper(), int.Parse(numQuantite.Text), txtNote.Text.Trim(), int.Parse(cmbxVL.SelectedValue.ToString()), int.Parse(cmbxPieces.SelectedValue.ToString()));
                     db.SaveChanges();
                     return true;
                 }
@@ -151,6 +155,20 @@ namespace GESCHANGE.Forms.Sub
             catch (Exception) { }
         }
 
+        public void getQuantite()
+        {
+            try
+            {
+                Pieces rs = db.Select_Pieces_By_Name(cmbxPieces.Text).FirstOrDefault();
+                if (rs != null && cmbxPieces.Text != string.Empty)
+                    lblQuantite.Text = string.Format("Quantité : {0}", rs.pies_Quantite);
+                else
+                    lblQuantite.Text = string.Empty;
+                PsQuantite = int.Parse(rs.pies_Quantite.ToString());
+            }
+            catch (Exception) { }
+        }
+
         #endregion Codes
 
         public frmSNew(frmListSorties f)
@@ -167,7 +185,7 @@ namespace GESCHANGE.Forms.Sub
             dtOperation.Value = date;
             txtReff.Text = reff;
             cmbxPieces.SelectedValue = ps;
-            txtQuantite.Text = que.ToString();
+            numQuantite.Text = que.ToString();
             cmbxVL.SelectedValue = vl;
             txtNote.Text = string.Empty;
             VerifyButtons();
@@ -246,6 +264,12 @@ namespace GESCHANGE.Forms.Sub
 
         private void cmbxVL_Leave(object sender, EventArgs e)
         {
+        }
+
+        private void cmbxPieces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getQuantite();
+            numQuantite.Maximum = PsQuantite;
         }
     }
 }

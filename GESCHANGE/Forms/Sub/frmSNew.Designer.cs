@@ -43,8 +43,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbxVL = new System.Windows.Forms.ComboBox();
             this.lblInfoVL = new System.Windows.Forms.Label();
-            this.txtQuantite = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.numQuantite = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantite)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDelete
@@ -84,6 +85,7 @@
             this.cmbxPieces.Name = "cmbxPieces";
             this.cmbxPieces.Size = new System.Drawing.Size(272, 31);
             this.cmbxPieces.TabIndex = 2;
+            this.cmbxPieces.SelectedIndexChanged += new System.EventHandler(this.cmbxPieces_SelectedIndexChanged);
             // 
             // dtOperation
             // 
@@ -181,13 +183,6 @@
             this.lblInfoVL.TabIndex = 56;
             this.lblInfoVL.Text = "---";
             // 
-            // txtQuantite
-            // 
-            this.txtQuantite.Location = new System.Drawing.Point(198, 144);
-            this.txtQuantite.Name = "txtQuantite";
-            this.txtQuantite.Size = new System.Drawing.Size(272, 27);
-            this.txtQuantite.TabIndex = 3;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -197,12 +192,19 @@
             this.label7.TabIndex = 57;
             this.label7.Text = "Quantité";
             // 
+            // numQuantite
+            // 
+            this.numQuantite.Location = new System.Drawing.Point(198, 144);
+            this.numQuantite.Name = "numQuantite";
+            this.numQuantite.Size = new System.Drawing.Size(226, 27);
+            this.numQuantite.TabIndex = 58;
+            // 
             // frmSNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 365);
-            this.Controls.Add(this.txtQuantite);
+            this.Controls.Add(this.numQuantite);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblInfoVL);
             this.Controls.Add(this.cmbxVL);
@@ -228,6 +230,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSNew";
             this.Activated += new System.EventHandler(this.frmSNew_Activated);
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantite)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,7 +253,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbxVL;
         private System.Windows.Forms.Label lblInfoVL;
-        private System.Windows.Forms.TextBox txtQuantite;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numQuantite;
     }
 }
