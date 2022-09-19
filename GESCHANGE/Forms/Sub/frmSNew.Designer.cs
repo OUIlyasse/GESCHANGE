@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSNew));
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -80,6 +81,8 @@
             // 
             // cmbxPieces
             // 
+            this.cmbxPieces.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbxPieces.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbxPieces.FormattingEnabled = true;
             this.cmbxPieces.Location = new System.Drawing.Point(198, 102);
             this.cmbxPieces.Name = "cmbxPieces";
@@ -166,6 +169,8 @@
             // 
             // cmbxVL
             // 
+            this.cmbxVL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbxVL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbxVL.FormattingEnabled = true;
             this.cmbxVL.Location = new System.Drawing.Point(198, 182);
             this.cmbxVL.Name = "cmbxVL";
@@ -223,6 +228,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

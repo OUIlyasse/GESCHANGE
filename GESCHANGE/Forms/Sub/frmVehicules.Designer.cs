@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVehicules));
             this.btnAddGrade = new System.Windows.Forms.Button();
             this.txtMleFA = new System.Windows.Forms.TextBox();
             this.cmbxGrade = new System.Windows.Forms.ComboBox();
@@ -60,12 +61,13 @@
             this.btnAddGrade.FlatAppearance.BorderSize = 0;
             this.btnAddGrade.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddGrade.Image = global::GESCHANGE.Properties.Resources.icons8_plus_25;
-            this.btnAddGrade.Location = new System.Drawing.Point(247, 86);
+            this.btnAddGrade.Location = new System.Drawing.Point(240, 86);
             this.btnAddGrade.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddGrade.Name = "btnAddGrade";
             this.btnAddGrade.Size = new System.Drawing.Size(27, 34);
             this.btnAddGrade.TabIndex = 3;
             this.btnAddGrade.UseVisualStyleBackColor = true;
+            this.btnAddGrade.Visible = false;
             // 
             // txtMleFA
             // 
@@ -313,6 +315,7 @@
             this.Controls.Add(this.btnDelete);
             this.Font = new System.Drawing.Font("Trebuchet MS", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
